@@ -5,6 +5,8 @@ import card.CardKind;
 import general.Colour;
 import general.Player;
 
+import java.util.ArrayList;
+
 public class PropertyCard extends Card {
 
     public int fullSets;//after improving , this variable may not be inserted by user, it depends on the length of rentList
@@ -25,7 +27,16 @@ public class PropertyCard extends Card {
     }
 
     public void use(Player player){
-        player.properties.add(this);
+
+        if (player.propertiesByColour.containsKey(colour)){
+            player.propertiesByColour.get(colour).add(this);
+        }else{
+            ArrayList<PropertyCard> tempArrayList = new ArrayList<PropertyCard>();
+            tempArrayList.add(this);
+            player.propertiesByColour.put(colour,tempArrayList);
+        }
+
+
     }
 
     public Colour getColour(){

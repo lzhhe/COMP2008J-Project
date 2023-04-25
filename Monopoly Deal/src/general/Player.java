@@ -20,9 +20,10 @@ public class Player {
 
     public ArrayList<Card> decks;
 
-    public ArrayList<PropertyCard> properties;
+    //give up use an ArrayList and change to use Hashmap
+    //public ArrayList<PropertyCard> properties;
 
-    HashMap<Colour, ArrayList<PropertyCard>> propertiesByColour = new HashMap<>();
+    public HashMap<Colour, ArrayList<PropertyCard>> propertiesByColour = new HashMap<>();
 
 
     protected int calculateCount(){
@@ -36,8 +37,10 @@ public class Player {
 
     protected int calculateProperty(){
         int value = 0;
-        for(Card card : properties){
-            value+=card.value;
+        for(ArrayList<PropertyCard> properties: propertiesByColour.values()){
+            for (PropertyCard properCard: properties){
+                value+=properCard.value;
+            }
         }
         return value;
     }
@@ -68,7 +71,9 @@ public class Player {
             if (card.getClass()== MoneyCard.class){
                 bankCount.remove(card);
             } else if (card.getClass()==PropertyCard.class) {
-                properties.remove(card);
+                Colour colour = ((PropertyCard) card).colour;//maybe problem
+                ArrayList<PropertyCard> colourArrayList = propertiesByColour.get(colour);
+                colourArrayList.remove(card);
             } else {
                 throw new IllegalArgumentException("this card is not in this player deck, it must be bugs");
             }
@@ -84,17 +89,7 @@ public class Player {
     }
 
     //here need to deal with the extra property: like single colour is full but still has a same colour wild card
-    public void propertyHashMap(){
 
-        // Group the properties by color
-        for (PropertyCard property : properties) {
-            Colour colour = property.getColour();
-            if (!propertiesByColour.containsKey(colour)) {
-                propertiesByColour.put(colour, new ArrayList<PropertyCard>());
-            }
-            propertiesByColour.get(colour).add(property);
-        }
-    }
 
     public boolean completeSet(ArrayList<PropertyCard> propertyCards){
         int numberOfFullSets = propertyCards.get(0).fullSets;
@@ -104,7 +99,7 @@ public class Player {
 
     //check if the player has 3 full sets
     public boolean winGame(){
-        propertyHashMap();
+
         int count = 0;
         for (ArrayList<PropertyCard> propertyCards : propertiesByColour.values()){
             if (completeSet(propertyCards)){

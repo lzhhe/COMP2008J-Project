@@ -13,7 +13,7 @@ public class MulticoloredProperty extends PropertyCard{
     //value is 0 forever
 
     public void flip(Player player, Colour colour){// user need input a colour to avoid null before using
-        if ((player.properties).size()==0){
+        if (player.propertiesByColour.isEmpty()){
             System.out.print("You can not flip, you have not any property card");
         }else{
             this.colour=colour;
