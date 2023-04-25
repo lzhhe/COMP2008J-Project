@@ -1,0 +1,5 @@
+package general;
+
+public enum Colour {
+    BLACK,BLUE,BROWN,GREEN,LIGHT_GREEN,LIGHT_BLUE,ORANGE,RED,YELLOW,PURPLE
+}
