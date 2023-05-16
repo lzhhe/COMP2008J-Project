@@ -3,7 +3,7 @@ package general;
 import card.Card;
 import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
-
+import static general.Game.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,6 +19,10 @@ public class Player {
     public ArrayList<Card> bankCount;
 
     public ArrayList<Card> decks;
+    private Game monopolygame;
+
+    static int j = 0;
+    Round r = new Round();
 
     //give up use an ArrayList and change to use Hashmap
     //public ArrayList<PropertyCard> properties;
@@ -26,13 +30,56 @@ public class Player {
     public HashMap<Colour, ArrayList<PropertyCard>> propertiesByColour = new HashMap<>();
 
 
+
+    public Player(String name, Game monopolygame) {
+        this.name = name;
+        this.monopolygame = monopolygame;
+        decks = new ArrayList<>();
+    }
+
+//    public Player(String name) {
+//        this.name = name;
+//        decks = new ArrayList<>();
+//    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "decks=" + decks +
+                '}';
+    }
+
+//    public void dealcards(int num) {
+//        if (r.getRound() % 3 == 1) {
+//            for (int i = 0; i < num; i++) {
+//                player1.decks.add(monopolygame.getDeck().getCards().pop());
+//                j++;
+//            }
+//        } else if (r.getRound() % 3 == 2) {
+//            for (int i = 0; i < num; i++) {
+//                player2.decks.add(monopolygame.getDeck().getCards().pop());
+//                j++;
+//            }
+//        } else {
+//            for (int i = 0; i < num; i++) {
+//                player3.decks.add(monopolygame.getDeck().getCards().pop());
+//                j++;
+//            }
+//        }
+//    }
+
+    public void dealcards() {
+        for (int i = 0; i < 5; i++) {
+            decks.add(monopolygame.getDeck().getCards().pop());
+        }
+    }
+
     protected int calculateCount(){
         int value = 0;
         for(Card card : bankCount){
             value+=card.value;
         }
         return value;
-
     }
 
     protected int calculateProperty(){

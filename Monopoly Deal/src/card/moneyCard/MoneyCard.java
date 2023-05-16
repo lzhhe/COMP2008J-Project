@@ -15,4 +15,12 @@ public class MoneyCard extends Card implements Bank {
     public void Bank(Player player) {
         player.bankCount.add(this);
     }
+
+    @Override
+    public String toString() {
+        return "MoneyCard{" +
+                "value=" + value +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

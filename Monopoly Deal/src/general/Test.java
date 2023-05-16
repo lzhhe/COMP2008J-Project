@@ -3,6 +3,10 @@ package general;
 public class Test {
 
     public static void main(String arg[]){
-        System.out.print("Hello World");
+
+        Game game = new Game();
+        game.initialgame();
+        game.printplayer();
+
     }
 }
