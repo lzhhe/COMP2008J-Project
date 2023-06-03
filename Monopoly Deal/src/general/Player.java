@@ -16,7 +16,7 @@ public class Player {
 
     //LocalDate birth;
 
-    public ArrayList<Card> bankCount;
+    public ArrayList<Card> bankCount=new ArrayList<>();
 
     public ArrayList<Card> decks;
     private Game monopolygame;
@@ -68,12 +68,13 @@ public class Player {
 //        }
 //    }
 
-    public void dealcards() {
-        for (int i = 0; i < 5; i++) {
-            decks.add(monopolygame.getDeck().getCards().pop());
-        }
-    }
-
+//tian:有报错，写test暂时先注释掉，等写的时候恢复
+//   public void dealcards() {
+//        for (int i = 0; i < 5; i++) {
+//            decks.add(monopolygame.getDeck().getCards().pop());
+//        }
+//    }
+//
     protected int calculateCount(){
         int value = 0;
         for(Card card : bankCount){
