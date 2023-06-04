@@ -18,8 +18,8 @@ public class Player {
 
     public ArrayList<Card> bankCount=new ArrayList<>();
 
-    public ArrayList<Card> decks;
-    private Game monopolygame;
+    public ArrayList<Card> decks=new ArrayList<>();
+    public Game monopolygame=new Game();
 
     static int j = 0;
     Round r = new Round();
@@ -75,7 +75,7 @@ public class Player {
 //        }
 //    }
 //
-    protected int calculateCount(){
+    public int calculateCount(){
         int value = 0;
         for(Card card : bankCount){
             value+=card.value;
@@ -83,7 +83,7 @@ public class Player {
         return value;
     }
 
-    protected int calculateProperty(){
+    public int calculateProperty(){
         int value = 0;
         for(ArrayList<PropertyCard> properties: propertiesByColour.values()){
             for (PropertyCard properCard: properties){
@@ -93,7 +93,7 @@ public class Player {
         return value;
     }
 
-    protected int totalValue(){
+    public int totalValue(){
         return calculateCount()+calculateProperty();
     }
 
@@ -151,6 +151,7 @@ public class Player {
         int count = 0;
         for (ArrayList<PropertyCard> propertyCards : propertiesByColour.values()){
             if (completeSet(propertyCards)){
+            	
                 count++;
             }
         }
