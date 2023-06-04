@@ -47,6 +47,8 @@ public class PropertyCard extends Card {
         return addHouse;
     }
 
+    public void draw(){}
+
 
 
 
