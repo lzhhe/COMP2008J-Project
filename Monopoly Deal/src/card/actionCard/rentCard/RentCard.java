@@ -18,7 +18,19 @@ public class RentCard extends ActionCard implements Rent{
 
     public Color getPrimaryColor() {
         return this.color_primary;
-    };
+    }
+
+    @Override
+    public void use(Player p1, Player p2) {
+
+    }
+
+    @Override
+    public void bank(Player p1) {
+
+    }
+
+    ;
 
     //public Color getSecondaryColor() {
         //return this.color_secondary;
@@ -92,6 +104,6 @@ public class RentCard extends ActionCard implements Rent{
 
 
 
-
+*/
 
 }

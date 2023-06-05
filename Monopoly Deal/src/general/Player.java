@@ -102,7 +102,7 @@ public class Player {
     }
 
     //Draw cards from the library but not delete in the library
-    protected void drawCard (Card card){
+    public void drawCard (Card card){
         decks.add(card);
     }
 
@@ -149,6 +149,9 @@ public class Player {
 
     }
 
+    public ArrayList<Card> getDecks() {
+        return this.decks;
+    }
 
     public void setBlocked(){
         this.block=2;
