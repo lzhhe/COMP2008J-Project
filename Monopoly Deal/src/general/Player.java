@@ -21,6 +21,9 @@ public class Player {
     public ArrayList<Card> decks=new ArrayList<>();
     public Game monopolygame=new Game();
 
+    public boolean doubleRent;
+    public int block = 0;// say no
+
     static int j = 0;
     Round r = new Round();
 
@@ -34,6 +37,7 @@ public class Player {
     public Player(String name, Game monopolygame) {
         this.name = name;
         this.monopolygame = monopolygame;
+        this.doubleRent = false;
         decks = new ArrayList<>();
     }
 
@@ -144,6 +148,26 @@ public class Player {
         return propertyCards.size() >= numberOfFullSets;
 
     }
+
+
+    public void setBlocked(){
+        this.block=2;
+    }
+
+    public boolean isBlocking(){
+        return this.block>0;
+    }
+
+
+    public boolean isDoubleRent(){
+        return this.doubleRent;
+    }
+
+    public void setDoubleRent(boolean b){
+        this.doubleRent = b;
+    }
+
+
 
     //check if the player has 3 full sets
     public boolean winGame(){

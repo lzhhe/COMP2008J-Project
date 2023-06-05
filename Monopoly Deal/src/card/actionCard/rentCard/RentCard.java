@@ -18,12 +18,12 @@ public class RentCard extends ActionCard implements Rent{
 
     public Color getPrimaryColor() {
         return this.color_primary;
-    }
+    };
 
     //public Color getSecondaryColor() {
         //return this.color_secondary;
     //}
-    public void use(Player user, Player target, Deck d) {
+   /* public void use(Player user, Player target, Deck d) {
         d.addUsed(this);
         int total = 0;
 

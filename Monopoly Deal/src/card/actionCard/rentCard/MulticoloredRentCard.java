@@ -22,8 +22,11 @@ public class MulticoloredRentCard extends ActionCard implements Rent{
 
     public Color getSecondaryColor() {
         return this.color_secondary;
-    }
-    public void use(Player user, Player target, Deck d) {
+    };
+
+
+
+    /*public void use(Player user, Player target, Deck d) {
         d.addUsed(this);
         int total = 0;
 
