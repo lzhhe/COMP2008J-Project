@@ -1,6 +1,7 @@
 package card.actionCard;
 
 import card.CardKind;
+
 import general.Player;
 
 public class DoubleRent extends ActionCard{
