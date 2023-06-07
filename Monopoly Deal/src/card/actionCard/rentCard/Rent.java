@@ -5,8 +5,6 @@ import general.Player;
 import java.awt.*;
 
 public interface Rent {
-    public Color getPrimaryColor();
-    public void use(Player p1,Player p2);
+    public void use(Player user,Player target);
 
-    public void bank(Player p1);
 }

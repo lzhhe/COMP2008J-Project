@@ -17,10 +17,8 @@ public class MoneyCard extends Card implements Bank {
     }
 
     @Override
-    public String toString() {
-        return "MoneyCard{" +
-                "value=" + value +
-                ", name='" + name + '\'' +
-                '}';
+    public String toString(){
+
+        return value+" ";
     }
 }

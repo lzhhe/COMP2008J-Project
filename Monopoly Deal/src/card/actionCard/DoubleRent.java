@@ -6,9 +6,9 @@ import general.Player;
 
 public class DoubleRent extends ActionCard{
 
-    public DoubleRent(int value, String name, CardKind cardkind) {
+    public DoubleRent() {
 
-        super(value, name, cardkind);
+        super(1,"DoubleRent", CardKind.DoubleRent);
     }
 
     public void use(Player user,Player target){

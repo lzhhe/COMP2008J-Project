@@ -17,36 +17,7 @@ public class ChessBoard {
      }
 
      public ChessBoard() {
-          this.cardLibrary.add(new MoneyCard(1,"yi yuan"));
-          this.cardLibrary.add(new MoneyCard(2,"er yuan"));
-          this.cardLibrary.add(new MoneyCard(5,"wu yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
-          this.cardLibrary.add(new MoneyCard(10,"shi yuan"));
+
 
      }
      public void shuffle(){
