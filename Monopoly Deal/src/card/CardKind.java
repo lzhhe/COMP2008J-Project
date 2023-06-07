@@ -4,9 +4,9 @@ public enum CardKind {
     MoneyCard,
     PropertyCard, WildCard, MulticoloredProperty,
     BuildHotel, BuildHouse,
-    BirthdayCard, ForceDeal,
+    BirthdayCard, DEBTCOLLECTOR,
     MulticoloredRentCard, RectCard,
-    DealBreaker, StealDeal,
+    DealBreaker, StealDeal, ForceDeal,
     DoubleRent,
     PassGo,
     SayNo

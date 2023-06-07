@@ -1,17 +1,33 @@
 package general;
 
 public class Round {
-    public static int turnround;
 
-    public int getRound() {
-        return turnround;
+    int step = 0;
+
+    Player player;
+
+    public Round(Player player){
+        this.player = player;
+    }
+    public void inRound(){
+        while(step<3){
+
+        }
     }
 
-    public void setRound(int round) {
-        this.turnround = turnround;
+    public boolean oneStep(){
+
+
+        //accept the input of user
+
+        //check the action
+
+        //use card and ask information //switch
+
+        //do some action
+
+
+        return true;
     }
 
-    public int roundbegin() {
-        return turnround = 1;
-    }
 }

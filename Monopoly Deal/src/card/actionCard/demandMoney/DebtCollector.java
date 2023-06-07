@@ -6,15 +6,16 @@ import general.Player;
 
 import java.util.ArrayList;
 
-public class BirthdayCard extends ActionCard implements Demand{
-    public BirthdayCard() {
-        super(2, "BirthdayCard",CardKind.BirthdayCard);
+public class DebtCollector extends ActionCard implements Demand{
+
+    public DebtCollector() {
+        super(3,"DebtCollector", CardKind.DEBTCOLLECTOR);
     }
+
+
 
     @Override
     public void use(ArrayList<Player> playerList) {
 
     }
-
-
 }

@@ -16,4 +16,10 @@ public abstract class Card{
     }
 
     public void use() {}
+
+
+    public String toString(){
+
+        return "Card name: "+ name + "Value: ";
+    }
 }
