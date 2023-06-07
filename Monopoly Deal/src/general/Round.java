@@ -2,12 +2,15 @@ package general;
 
 import card.Card;
 import card.CardKind;
-import card.actionCard.ActionCard;
+
 import card.actionCard.steal.StealDeal;
 import card.propertyCard.PropertyCard;
 
 import java.util.Objects;
 import java.util.Scanner;
+
+import static general.Game.cardLibrary;
+import static general.Game.playerList;
 
 public class Round {
 
@@ -21,11 +24,17 @@ public class Round {
     public boolean inRound(){
         boolean win = false;
         //need a draw card
+        for (int i=0; i<2;i++){
+            Card card= cardLibrary.pop();
+            player.decks.add(card);
+        }
+
+
 
         while(step<3){
             boolean status = oneStep();
             if (!status){
-                System.out.println("you pass your round");
+
                 break;
 
             }
@@ -88,6 +97,7 @@ public class Round {
                                 if (card instanceof PropertyCard propertyCard){
                                     if (Objects.equals(name,propertyCard.name)){
                                         propertyCard.use(player);
+                                        break;
                                     }
                                 }
                             }
@@ -95,9 +105,16 @@ public class Round {
                             String userName = parts[1];
                             String targetName = parts[2];
                             Colour colour = Colour.valueOf(parts[3]);
+                            Player target = null;
+                            for (Player player : playerList){
+
+                                if (Objects.equals(player.name,targetName)){
+                                    target = player;
+                                }
+                            }
                             for (Card card:player.decks){
                                 if (card instanceof StealDeal stealDeal){
-                                    stealDeal.use();
+                                    stealDeal.use(player,target,colour);
                                 }
                             }
                         case DealBreaker:
@@ -128,17 +145,11 @@ public class Round {
                     //name of a wild card
                 case PASS:
                     //skip the round
+                    System.out.println("you skip you round");
                     return false;
 
             }
         }
-
-
-
-
-
-
-
         return true;
     }
 

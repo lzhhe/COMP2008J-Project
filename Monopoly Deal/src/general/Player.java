@@ -8,6 +8,7 @@ import static general.Game.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 //import java.time.LocalDate;
 
@@ -18,7 +19,7 @@ public class Player {
 
     public LocalDate birth;
 
-    public ArrayList<Card> bankCount=new ArrayList<>();
+    public ArrayList<Card> bankCount = new ArrayList<>();
 
     public ArrayList<Card> decks = new ArrayList<>();
 
@@ -45,9 +46,8 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "decks=" + decks +
-                '}';
+        return "Player: "+name;
+
     }
     public int calculateCount(){
         int value = 0;
@@ -71,7 +71,7 @@ public class Player {
         return calculateCount()+calculateProperty();
     }
 
-    //inout some inforamtion
+
 
 
     //Draw cards from the library but not delete in the library
@@ -89,7 +89,7 @@ public class Player {
     }
 
     //the card to pay for rent
-    public void pay (ArrayList<Card> demand){
+    /*public void pay (ArrayList<Card> demand){
         for (Card card: demand){
             if (card instanceof MoneyCard){
                 bankCount.remove(card);
@@ -101,7 +101,7 @@ public class Player {
                 throw new IllegalArgumentException("this card is not in this player deck, it must be bugs");
             }
         }
-    }
+    }*/
 
     public void deleteCard(){
         while (decks.size()>7){
@@ -109,6 +109,15 @@ public class Player {
 
         }
     }
+
+
+
+
+    public void selectCard(){
+
+    }
+
+
 
     //here need to deal with the extra property: like single colour is full but still has a same colour wild card
     public boolean completeSet(ArrayList<PropertyCard> propertyCards){
@@ -130,6 +139,9 @@ public class Player {
 
         return count==3;
     }
+
+
+
 
 
 
@@ -155,30 +167,58 @@ public class Player {
     }
 
 
+
+
+
+
     public void printDeck(){
+        String str = "your deck: ";
         for (Card card : decks){
-            System.out.print(card.toString()+" ");
+            str = str+card.toString()+" ";
+
         }
+        str=str+"\n";
+        System.out.println(str);
     }
 
     public void printBank(){
+        String str = "your bank account: ";
         for (Card moneyCard:bankCount){
-            System.out.print(moneyCard.toString()+" ");
+            //here just to check value
+            str = str + moneyCard.value+" ";
+
         }
 
+        str=str+"\n";
+        System.out.println(str);
     }
 
     public void printProperty(){
+        String colourName;
+        int number;
+        Colour colour;
+        String str = "your Property: ";
+
+        for (Colour value : propertiesByColour.keySet()) {
+            colour = value;
+            colourName = colour.name();
+            number = propertiesByColour.get(colour).size();
+            str = str + colourName+" : " + number + " ";
+
+
+        }
+        str=str+"\n";
+        System.out.println(str);
 
     }
 
     public void printInformation(){
         printDeck();
-        System.out.println("\n");
+        //System.out.println("\n");
         printBank();
-        System.out.println("\n");
+        //System.out.println("\n");
         printProperty();
-        System.out.println("\n");
+        //System.out.println("\n");
     }
 
 

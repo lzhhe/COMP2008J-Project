@@ -71,14 +71,14 @@ public class Game {
 
 		int index = playerList.indexOf(firstPlayer);
 		while (true){
-			Round round = new Round(playerList.get(index%4));
-			System.out.println("It is "+playerList.get(index%4).name +" round");
+			Round round = new Round(playerList.get(index%(playerList.size())));
+			System.out.println("It is "+playerList.get(index%(playerList.size())).name +" round");
 			boolean win = round.inRound();
 			if (win){
 				break;
 			}
 			index++;
-			//maybe can add a limit to reuse card before it is empty
+			//maybe can add a limit to reuse card before it is empty maybe 7 cards
 			//need to consider card used and the library
 		}
 
