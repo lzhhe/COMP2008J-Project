@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class DebtCollector extends ActionCard implements Demand{
 
     public DebtCollector() {
-        super(3,"DebtCollector", CardKind.DEBTCOLLECTOR);
+        super(3,"DebtCollector", CardKind.DebtCollector);
     }
 
 

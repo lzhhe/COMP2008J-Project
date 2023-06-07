@@ -14,4 +14,6 @@ public class BuildHouse  extends ActionCard implements Build{
     public void use(Player user, Colour colour) {
 
     }
+
+    public void remove (){}//optional
 }

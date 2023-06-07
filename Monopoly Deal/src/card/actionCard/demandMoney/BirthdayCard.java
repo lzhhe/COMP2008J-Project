@@ -14,6 +14,8 @@ public class BirthdayCard extends ActionCard implements Demand{
     @Override
     public void use(ArrayList<Player> playerList) {
 
+
+
     }
 
 

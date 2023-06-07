@@ -14,5 +14,8 @@ public class BuildHotel extends ActionCard implements Build{
     @Override
     public void use (Player user,  Colour colour){
 
+
     }
+
+    public void remove (){}//optional
 }

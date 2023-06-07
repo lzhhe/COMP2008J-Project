@@ -20,8 +20,7 @@ public class Player {
 
     public ArrayList<Card> bankCount=new ArrayList<>();
 
-    public ArrayList<Card> decks=new ArrayList<>();
-    public Game monopolygame=new Game();
+    public ArrayList<Card> decks = new ArrayList<>();
 
     public boolean doubleRent;
     public int block = 0;// say no
@@ -35,18 +34,14 @@ public class Player {
 
 
 
-    public Player(String name, Game monopolygame, LocalDate birth) {
+    public Player(String name, LocalDate birth) {
         this.name = name;
-        this.monopolygame = monopolygame;
         this.birth = birth;
         this.doubleRent = false;
         decks = new ArrayList<>();
     }
 
-//    public Player(String name) {
-//        this.name = name;
-//        decks = new ArrayList<>();
-//    }
+
 
     @Override
     public String toString() {
@@ -54,9 +49,6 @@ public class Player {
                 "decks=" + decks +
                 '}';
     }
-
-
-
     public int calculateCount(){
         int value = 0;
         for(Card card : bankCount){
@@ -83,18 +75,16 @@ public class Player {
 
 
     //Draw cards from the library but not delete in the library
+    //may need to consider more about this method
     public void drawCard (Card card){
         decks.add(card);
     }
 
     //have problem
-    protected void useCard(Card card){
 
-        card.use();
 
-        //need a condition to check whether it is finished the process
-        //in case someone is not target or someone can not afford
-
+    public void bank(Card card){
+        bankCount.add(card);
         decks.remove(card);
     }
 
@@ -116,8 +106,6 @@ public class Player {
     public void deleteCard(){
         while (decks.size()>7){
             //wait player choose
-
-
 
         }
     }
@@ -142,13 +130,6 @@ public class Player {
 
         return count==3;
     }
-
-    public void selectCardInDeck(String cardName){
-
-    }
-
-
-
 
 
 
@@ -199,6 +180,7 @@ public class Player {
         printProperty();
         System.out.println("\n");
     }
+
 
 
 
