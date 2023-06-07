@@ -14,16 +14,6 @@ public class PropertyCard extends Card {
     public int[] rentList;//depend on the number in fullSets
     public boolean addHouse = true;
 
-    public int getHouseCount() {
-        return houseCount;
-    }
-
-    public void setHouseCount(int houseCount) {
-        this.houseCount = houseCount;
-    }
-
-    public int houseCount = 0; // 用于记录添加的房屋数量
-
 
     public PropertyCard(int value, String name, CardKind cardkind, int[] rentList,Colour colour){
         super(value, name, cardkind);//the value is on the up-left side value
@@ -59,24 +49,6 @@ public class PropertyCard extends Card {
 
     public boolean getAddHouse(){
         return addHouse;
-    }
-
-
-
-    public void addHouses() {
-        if (getAddHouse()) {
-            houseCount++;
-        }
-    }
-
-    public void updateRent() {
-        // 根据房屋数量更新租金
-        if (houseCount <= rentList.length) {
-            value = rentList[houseCount - 1];
-        } else {
-            // 如果房屋数量超过了租金列表的长度，则使用最后一个租金值
-            value = rentList[rentList.length - 1];
-        }
     }
 
 
