@@ -67,6 +67,16 @@ public class Player {
         return value;
     }
 
+    public ArrayList<PropertyCard> getAllProperties() {
+        ArrayList<PropertyCard> allProperties = new ArrayList<>();
+
+        for (ArrayList<PropertyCard> properties : propertiesByColour.values()) {
+            allProperties.addAll(properties);
+        }
+
+        return allProperties;
+    }
+
     public int totalValue(){
         return calculateCount()+calculateProperty();
     }
@@ -114,7 +124,6 @@ public class Player {
     public boolean completeSet(ArrayList<PropertyCard> propertyCards){
         int numberOfFullSets = propertyCards.get(0).fullSets;
         return propertyCards.size() >= numberOfFullSets;
-
     }
 
     //check if the player has 3 full sets
