@@ -14,6 +14,14 @@ public class PropertyCard extends Card {
     public int[] rentList;//depend on the number in fullSets
     public boolean addHouse = true;
 
+    public int getHouseCount() {
+        return houseCount;
+    }
+
+    public void setHouseCount(int houseCount) {
+        this.houseCount = houseCount;
+    }
+
     public int houseCount = 0; // 用于记录添加的房屋数量
 
 
@@ -55,8 +63,8 @@ public class PropertyCard extends Card {
 
 
 
-    public void addHouse() {
-        if (addHouse) {
+    public void addHouses() {
+        if (getAddHouse()) {
             houseCount++;
         }
     }
