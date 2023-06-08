@@ -3,6 +3,10 @@ package card.propertyCard.wildCard;
 import card.CardKind;
 import card.propertyCard.PropertyCard;
 import general.Colour;
+import general.Player;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WildCard extends PropertyCard{
     public Colour otherColour;
@@ -16,9 +20,29 @@ public class WildCard extends PropertyCard{
         this.otherRentList = otherRentList;
     }
 
+    public void use(Player player){
+        System.out.println("wildCard method");
+        if (player.propertiesByColour.containsKey(colour)){
+            ArrayList<PropertyCard>newList = player.propertiesByColour.get(colour);
+            newList.add(this);
+            player.propertiesByColour.replace(colour,newList);
+        }else{
+            ArrayList<PropertyCard> tempArrayList = new ArrayList<PropertyCard>();
+            tempArrayList.add(this);
+            player.propertiesByColour.put(colour,tempArrayList);
+        }
+
+        player.decks.remove(this);
+    }
 
 
-    public void flip() {
+
+    public void flip(Player player) {
+
+        ArrayList<PropertyCard> tempArrayList= player.propertiesByColour.get(colour);
+        tempArrayList.remove(this);
+        player.propertiesByColour.replace(colour,tempArrayList);
+
         Colour temp1 = colour;
         int temp2 = fullSets;
         int[] temp3 = rentList;
@@ -30,6 +54,9 @@ public class WildCard extends PropertyCard{
         otherColour = temp1;
         otherFullSets = temp2;
         otherRentList = temp3;
+
+        super.use(player);
+
     }
 
 

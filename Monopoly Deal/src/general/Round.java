@@ -8,7 +8,9 @@ import card.actionCard.PassGo;
 import card.actionCard.steal.StealDeal;
 import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
+import card.propertyCard.wildCard.WildCard;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -45,15 +47,20 @@ public class Round {
 
 
         while(step<3){
-            boolean status = oneStep();
-            if (!status){
+            int status = oneStep();
+            if (status==-1){
+
                 //pass
                 break;
 
+            }else if (status==0){
+                //flip will not occupy a step
+                step--;
             }
 
             if (player.winGame()){
                 win=true;
+                System.out.println(player.name+" WINNING!!!!!!!");
                 break;
             }
 
@@ -64,8 +71,15 @@ public class Round {
         return win;
     }
 
-    public boolean oneStep(){
+    public int oneStep(){
+        System.out.println("other player cards");
         //need print
+        for (Player otherPlayer:playerList ){
+            if (!Objects.equals(otherPlayer,player)){
+                otherPlayer.printBankAndProperty();
+            }
+        }
+        System.out.println("your cards");
         player.printDeck();
 
         //accept the input of user
@@ -85,9 +99,6 @@ public class Round {
 
         if (action != null) {
 
-
-
-
             switch (action){
                 //use card and ask information //switch
                 //do some action
@@ -99,7 +110,7 @@ public class Round {
                     }else if (bankCard  instanceof ActionCard card1){
                         card1.bank(player);
                     }
-                    break;
+                    return 1;
 
 
 
@@ -107,10 +118,19 @@ public class Round {
                     System.out.println("please choose a card");
                     Card card = player.selectCardInDeck();
                     CardKind useCard = card.cardKind;
+                    //System.out.println(useCard.toString());
                     switch (useCard){
+                        //different enum so it need to divide
+                        case WildCard:
+                            System.out.println("you choose a wild card");
+                            WildCard wildCard =(WildCard) card;
+                            wildCard.use(player);
+                            player.printProperty();
+                            break;
+
                         case PropertyCard:
                             System.out.println("you choose a property card");
-                            PropertyCard propertyCard = (PropertyCard) card;
+                            PropertyCard propertyCard =(PropertyCard) card;
                             propertyCard.use(player);
                             player.printProperty();
 
@@ -157,21 +177,41 @@ public class Round {
 
 
                     }
+                    return 1;
 
 
                 case FLIP:
-                    break;
+                    System.out.println("please insert the origin colour");
+                    Scanner in  = new Scanner(System.in);
+                    String colour1Name = in.next();
+
+                    Colour originalColour = Colour.valueOf(colour1Name);
+
+                    ArrayList<PropertyCard> tempList=player.propertiesByColour.get(originalColour);
+                    WildCard wildCard = null;
+                    for (PropertyCard propertyCard:tempList){
+                        if (propertyCard instanceof WildCard){
+                            wildCard =(WildCard) propertyCard;
+                        }
+                    }
+                    if (wildCard != null) {
+                        wildCard.flip(player);
+                    }
+
+
+                    return 0;
 
 
                     //name of a wild card
                 case PASS:
                     //skip the round
                     System.out.println("you skip you round");
-                    return false;
+                    return -1;
 
             }
         }
-        return true;
+        return -1;
+
     }
 
 }

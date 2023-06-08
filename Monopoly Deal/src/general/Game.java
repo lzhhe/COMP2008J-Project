@@ -16,6 +16,8 @@ import card.actionCard.steal.DealBreaker;
 import card.actionCard.steal.StealDeal;
 import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
+import card.propertyCard.wildCard.MulticoloredProperty;
+import card.propertyCard.wildCard.WildCard;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -118,16 +120,15 @@ public class Game {
 		cardLibrary.add(new PropertyCard(4,"Blue1",CardKind.PropertyCard,new int[]{3,8},Colour.BLUE));
 		cardLibrary.add(new PropertyCard(4,"Blue2",CardKind.PropertyCard,new int[]{3,8},Colour.BLUE));
 
-
 		cardLibrary.add(new PropertyCard(1,"Brown1",CardKind.PropertyCard,new int[]{1,2},Colour.BROWN));
 		cardLibrary.add(new PropertyCard(1,"Brown2",CardKind.PropertyCard,new int[]{1,2},Colour.BROWN));
 
 		cardLibrary.add(new PropertyCard(1,"Utility1",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
 		cardLibrary.add(new PropertyCard(1,"Utility2",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
 
-		cardLibrary.add(new PropertyCard(4,"Utility1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
-		cardLibrary.add(new PropertyCard(4,"Utility1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
-		cardLibrary.add(new PropertyCard(4,"Utility1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
+		cardLibrary.add(new PropertyCard(4,"Green1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
+		cardLibrary.add(new PropertyCard(4,"Green1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
+		cardLibrary.add(new PropertyCard(4,"Green1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
 
 		cardLibrary.add(new PropertyCard(3,"Yellow1",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
 		cardLibrary.add(new PropertyCard(3,"Yellow2",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
@@ -146,6 +147,8 @@ public class Game {
 		cardLibrary.add(new PropertyCard(2,"Pink3",CardKind.PropertyCard,new int[]{1,2,4},Colour.PINK));
 
 		cardLibrary.add(new PropertyCard(1,"lightBlue1",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
+		/*cardLibrary.add(new PropertyCard(1,"Utility1",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
+		cardLibrary.add(new PropertyCard(1,"Utility2",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));*/
 		cardLibrary.add(new PropertyCard(1,"lightBlue2",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
 		cardLibrary.add(new PropertyCard(1,"lightBlue3",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
 
@@ -156,9 +159,28 @@ public class Game {
 
 
 
-
-
 		//Wildcards
+		// WildCard(int value, String name, int[] rentList, Colour colour, int[] otherRentList, Colour otherColour)
+		//1 Dark Blue/Green, 1 Green/Railroad, 1 Utility/Railroad,1 LightBlue/Railroad, 1 Light Blue/Brown,2 Pink/Orange, 2 Red/Yellow, 2 multi-colour Property Wildcards
+		cardLibrary.add(new WildCard(4,"Blue Green Wild card",new int[]{3,8},Colour.BLUE,new int[]{2,4,7},Colour.GREEN));
+
+		cardLibrary.add(new WildCard(4,"Green Railroad Wild card",new int[]{2,4,7},Colour.GREEN,new int[]{2,4,7},Colour.GREEN));
+
+		cardLibrary.add(new WildCard(4,"Utility Railroad Wild card",new int[]{1,2},Colour.UTILITY,new int[]{1,2,3,4},Colour.RAILROAD));
+
+		cardLibrary.add(new WildCard(4,"LightBlue Railroad Wild card",new int[]{1,2,3},Colour.LIGHT_BLUE,new int[]{1,2,3,4},Colour.RAILROAD));
+
+		cardLibrary.add(new WildCard(4,"LightBlue Brown Wild card",new int[]{1,2,3},Colour.LIGHT_BLUE,new int[]{1,2},Colour.BROWN));
+
+		cardLibrary.add(new WildCard(2,"Pink Orange Wild card",new int[]{1,2,4},Colour.PINK,new int[]{1,3,5},Colour.ORANGE));
+		cardLibrary.add(new WildCard(2,"Pink Orange Wild card",new int[]{1,2,4},Colour.PINK,new int[]{1,3,5},Colour.ORANGE));
+
+		cardLibrary.add(new WildCard(3,"Red Yellow Wild card",new int[]{2,3,6},Colour.RED,new int[]{2,4,6},Colour.YELLOW));
+		cardLibrary.add(new WildCard(3,"Red Yellow Wild card",new int[]{2,3,6},Colour.RED,new int[]{2,4,6},Colour.YELLOW));
+
+		cardLibrary.add(new MulticoloredProperty());
+		cardLibrary.add(new MulticoloredProperty());
+
 
 		//Action Cards
 		//2 Deal Breaker, 3 Just Say No, 3 Sly Deal, 4 Force Deal, 3 Debt
@@ -201,20 +223,20 @@ public class Game {
 		cardLibrary.add(new DoubleRent());
 
 		//Rent Cards
-		cardLibrary.add(new RentCard(Colour.BLUE,Colour.GREEN));
-		cardLibrary.add(new RentCard(Colour.BLUE,Colour.GREEN));
+		cardLibrary.add(new RentCard("Blue Green Rent",Colour.BLUE,Colour.GREEN));
+		cardLibrary.add(new RentCard("Blue Green Rent",Colour.BLUE,Colour.GREEN));
 
-		cardLibrary.add(new RentCard(Colour.RED,Colour.YELLOW));
-		cardLibrary.add(new RentCard(Colour.RED,Colour.YELLOW));
+		cardLibrary.add(new RentCard("Red Yellow Rent",Colour.RED,Colour.YELLOW));
+		cardLibrary.add(new RentCard("Red Yellow Rent",Colour.RED,Colour.YELLOW));
 
-		cardLibrary.add(new RentCard(Colour.ORANGE,Colour.PINK));
-		cardLibrary.add(new RentCard(Colour.ORANGE,Colour.PINK));
+		cardLibrary.add(new RentCard("Orange Pink Rent",Colour.ORANGE,Colour.PINK));
+		cardLibrary.add(new RentCard("Orange Pink Rent",Colour.ORANGE,Colour.PINK));
 
-		cardLibrary.add(new RentCard(Colour.LIGHT_BLUE,Colour.BROWN));
-		cardLibrary.add(new RentCard(Colour.LIGHT_BLUE,Colour.BROWN));
+		cardLibrary.add(new RentCard("LightBlue Brown Rent",Colour.LIGHT_BLUE,Colour.BROWN));
+		cardLibrary.add(new RentCard("LightBlue Brown Rent",Colour.LIGHT_BLUE,Colour.BROWN));
 
-		cardLibrary.add(new RentCard(Colour.RAILROAD,Colour.UTILITY));
-		cardLibrary.add(new RentCard(Colour.RAILROAD,Colour.UTILITY));
+		cardLibrary.add(new RentCard("Railroad Utility Rent",Colour.RAILROAD,Colour.UTILITY));
+		cardLibrary.add(new RentCard("Railroad Utility Rent",Colour.RAILROAD,Colour.UTILITY));
 
 		cardLibrary.add(new MulticoloredRentCard());
 		cardLibrary.add(new MulticoloredRentCard());
@@ -239,6 +261,11 @@ public class Game {
 			index++;
 			//maybe can add a limit to reuse card before it is empty maybe 7 cards
 			//need to consider card used and the library
+			if (cardLibrary.size()<=7){
+				cardLibrary.addAll(discard);
+				shuffle();
+			}
+
 		}
 
 
