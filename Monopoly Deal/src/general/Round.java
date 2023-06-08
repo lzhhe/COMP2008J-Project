@@ -2,19 +2,12 @@ package general;
 
 import card.Card;
 import card.CardKind;
-
 import card.actionCard.ActionCard;
-import card.actionCard.PassGo;
 import card.actionCard.steal.StealDeal;
-import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
-import card.propertyCard.wildCard.WildCard;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-
-import static general.Game.*;
 
 public class Round {
 
@@ -27,40 +20,18 @@ public class Round {
     }
     public boolean inRound(){
         boolean win = false;
-
-
-        if (player.decks.size()==0){
-            for (int i=0; i<5;i++){
-                Card card= cardLibrary.pop();
-                player.decks.add(card);
-            }
-
-        }else{
-            for (int i=0; i<2;i++){
-                Card card= cardLibrary.pop();
-                player.decks.add(card);
-            }
-        }
-
-
-
-
+        //need a draw card
 
         while(step<3){
-            int status = oneStep();
-            if (status==-1){
-
-                //pass
+            boolean status = oneStep();
+            if (!status){
+                System.out.println("you pass your round");
                 break;
 
-            }else if (status==0){
-                //flip will not occupy a step
-                step--;
             }
 
             if (player.winGame()){
                 win=true;
-                System.out.println(player.name+" WINNING!!!!!!!");
                 break;
             }
 
@@ -71,22 +42,13 @@ public class Round {
         return win;
     }
 
-    public int oneStep(){
-        System.out.println("other player cards");
-        //need print
-        for (Player otherPlayer:playerList ){
-            if (!Objects.equals(otherPlayer,player)){
-                otherPlayer.printBankAndProperty();
-            }
-        }
-        System.out.println("your cards");
-        player.printDeck();
+    public boolean oneStep(){
 
         //accept the input of user
         Action action = null;
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("please insert what do you want to do: ");
+        System.out.println("please insert what What do you want to do: ");
         String userInput = scanner.nextLine();
         try {
             action = Action.valueOf(userInput);
@@ -98,120 +60,86 @@ public class Round {
         }
 
         if (action != null) {
+            String useOrder;
+            String[] parts;
+            scanner = new Scanner(System.in);
+            useOrder = scanner.nextLine();
+            parts = useOrder.split(" ");
 
             switch (action){
                 //use card and ask information //switch
                 //do some action
                 case BANK:
-                    System.out.println("please choose a money card");
-                    Card bankCard = player.selectCardInDeck();
-                    if (bankCard  instanceof MoneyCard card1){
-                        card1.bank(player);
-                    }else if (bankCard  instanceof ActionCard card1){
-                        card1.bank(player);
+
+                    for (Card card : player.decks){
+                        if (Objects.equals(card.name, parts[0])){
+                            player.bank(card);
+                        }
                     }
-                    return 1;
 
-
-
+                    //action card name or money card
                 case USE:
-                    System.out.println("please choose a card");
-                    Card card = player.selectCardInDeck();
-                    CardKind useCard = card.cardKind;
-                    //System.out.println(useCard.toString());
+                    CardKind useCard = CardKind.valueOf(parts[0]);
                     switch (useCard){
-                        //different enum so it need to divide
-                        case WildCard:
-                            System.out.println("you choose a wild card");
-                            WildCard wildCard =(WildCard) card;
-                            wildCard.use(player);
-                            player.printProperty();
-                            break;
-
-                        case PropertyCard:
-                            System.out.println("you choose a property card");
-                            PropertyCard propertyCard =(PropertyCard) card;
-                            propertyCard.use(player);
-                            player.printProperty();
-
-                            break;
-
+                        case PropertyCard  :
+                            //add to propertyList
+                            String name  = parts[1];
+                            for (Card card:player.decks){
+                                if (card instanceof PropertyCard propertyCard){
+                                    if (Objects.equals(name,propertyCard.name)){
+                                        propertyCard.use(player);
+                                    }
+                                }
+                            }
                         case StealDeal:
-                            break;
-
-
+                            String userName = parts[1];
+                            String targetName = parts[2];
+                            Colour colour = Colour.valueOf(parts[3]);
+                            for (Card card:player.decks){
+                                if (card instanceof StealDeal stealDeal){
+                                    stealDeal.use();
+                                }
+                            }
                         case DealBreaker:
-                            break;
-
                         case PassGo:
-                            PassGo passGo = (PassGo) card;
-                            passGo.use(player);
-                            break;
                         case ForceDeal:
-                            break;
-
                         case DoubleRent:
-                            break;
-
-                        /*case SayNo:
-                            break;*/
-
+                        case SayNo:
                         case BuildHouse:
-                            break;
-
                         case BuildHotel:
-                            break;
-
                         case BirthdayCard:
-                            break;
-
                         case DebtCollector:
-                            break;
-
                         case RectCard:
-                            break;
-
                         case MulticoloredRentCard:
-                            break;
-
 
 
                     }
-                    return 1;
 
 
                 case FLIP:
-                    System.out.println("please insert the origin colour");
-                    Scanner in  = new Scanner(System.in);
-                    String colour1Name = in.next();
-
-                    Colour originalColour = Colour.valueOf(colour1Name);
-
-                    ArrayList<PropertyCard> tempList=player.propertiesByColour.get(originalColour);
-                    WildCard wildCard = null;
-                    for (PropertyCard propertyCard:tempList){
-                        if (propertyCard instanceof WildCard){
-                            wildCard =(WildCard) propertyCard;
-                        }
-                    }
-                    if (wildCard != null) {
-                        wildCard.flip(player);
-                    }
 
 
-                    return 0;
+
+
+
+
 
 
                     //name of a wild card
                 case PASS:
                     //skip the round
-                    System.out.println("you skip you round");
-                    return -1;
+                    return false;
 
             }
         }
-        return -1;
 
+
+
+
+
+
+
+        return true;
     }
 
 }

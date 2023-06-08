@@ -15,9 +15,8 @@ public abstract class ActionCard extends Card implements Bank {
     }
 
     @Override
-    public void bank(Player player) {
+    public void Bank(Player player) {
         player.bankCount.add(this);
-        player.decks.remove(this);
     }
 
     public void use(){}

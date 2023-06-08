@@ -17,7 +17,10 @@ public class DealBreaker extends ActionCard implements Steal {
 
     @Override
     public void use(Player user, Player target, Colour colour) {
+        /*if (!target.isBlocking()){//here need to consider SayNo
+            //just write specific function for his class
 
+        }*/
 
         ArrayList<PropertyCard> targetList = target.propertiesByColour.get(colour);
         target.propertiesByColour.remove(colour);
@@ -30,8 +33,6 @@ public class DealBreaker extends ActionCard implements Steal {
         }else{
             user.propertiesByColour.put(colour,targetList);
         }
-
-        user.decks.remove(this);
 
 
 

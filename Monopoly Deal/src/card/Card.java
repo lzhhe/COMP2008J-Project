@@ -20,6 +20,6 @@ public abstract class Card{
 
     public String toString(){
 
-        return name + " Value: " + value;
+        return "Card name: "+ name + "Value: ";
     }
 }
