@@ -20,7 +20,7 @@ public class PropertyCard extends Card {
         this.fullSets = rentList.length;
         this.rentList = rentList;//one house ... dollars, two houses ... dollars, three houses ... dollars(optional)
         this.colour = colour;// from Colour Enum
-        if (colour == Colour.LIGHT_GREEN || colour==Colour.BLACK){//industry can nor add house or hotel
+        if (colour == Colour.UTILITY || colour==Colour.RAILROAD){//industry can nor add house or hotel
             addHouse = false;
         }
 
@@ -40,6 +40,8 @@ public class PropertyCard extends Card {
             tempArrayList.add(this);
             player.propertiesByColour.put(colour,tempArrayList);
         }
+
+        player.decks.remove(this);
 
 
     }

@@ -9,9 +9,16 @@ import java.awt.*;
 
 public class RentCard extends ActionCard implements Rent{
 
+    Colour colour1;
+    Colour colour2;
 
-    public RentCard() {
+
+    public RentCard(Colour colour1,Colour colour2) {
+        //maybe some question
         super(1,"RentCard",CardKind.RectCard);
+        this.colour1 = colour1;
+        this.colour2 = colour2;
+
 
     }
 

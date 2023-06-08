@@ -74,22 +74,18 @@ public class Player {
 
 
 
-    //Draw cards from the library but not delete in the library
-    //may need to consider more about this method
-    public void drawCard (Card card){
-        decks.add(card);
-    }
+
 
     //have problem
 
-
+    //test code;
     public void bank(Card card){
         bankCount.add(card);
         decks.remove(card);
     }
 
     //the card to pay for rent
-    /*public void pay (ArrayList<Card> demand){
+    public void pay (ArrayList<Card> demand){
         for (Card card: demand){
             if (card instanceof MoneyCard){
                 bankCount.remove(card);
@@ -97,11 +93,12 @@ public class Player {
                 Colour colour = ((PropertyCard) card).colour;//maybe problem
                 ArrayList<PropertyCard> colourArrayList = propertiesByColour.get(colour);
                 colourArrayList.remove(card);
+                propertiesByColour.replace(colour,colourArrayList);
             } else {
                 throw new IllegalArgumentException("this card is not in this player deck, it must be bugs");
             }
         }
-    }*/
+    }
 
     public void deleteCard(){
         while (decks.size()>7){
@@ -113,9 +110,13 @@ public class Player {
 
 
 
-    public void selectCard(){
+    public void selectCardInDeck(String cardName){
+
+
 
     }
+
+    public void selectBankAndProperty(){}
 
 
 
@@ -170,7 +171,8 @@ public class Player {
 
 
 
-
+    //we override toString method and use in here
+    //but in other print method it is unnecessary to print all information
     public void printDeck(){
         String str = "your deck: ";
         for (Card card : decks){

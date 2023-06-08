@@ -9,8 +9,7 @@ import card.propertyCard.PropertyCard;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static general.Game.cardLibrary;
-import static general.Game.playerList;
+import static general.Game.*;
 
 public class Round {
 
@@ -23,11 +22,22 @@ public class Round {
     }
     public boolean inRound(){
         boolean win = false;
-        //need a draw card
-        for (int i=0; i<2;i++){
-            Card card= cardLibrary.pop();
-            player.decks.add(card);
+
+        
+        if (player.decks.size()==0){
+            for (int i=0; i<5;i++){
+                Card card= cardLibrary.pop();
+                player.decks.add(card);
+            }
+
+        }else{
+            for (int i=0; i<2;i++){
+                Card card= cardLibrary.pop();
+                player.decks.add(card);
+            }
         }
+
+
 
 
 
@@ -117,6 +127,8 @@ public class Round {
                                     stealDeal.use(player,target,colour);
                                 }
                             }
+
+                            discard.add(new StealDeal());
                         case DealBreaker:
                         case PassGo:
                         case ForceDeal:

@@ -18,7 +18,7 @@ public class MulticoloredProperty extends PropertyCard{
         }else{
             this.colour=colour;
             switch(colour){
-                case BLACK:
+                case RAILROAD:
                     rentList = new int[]{1, 2, 3, 4};
                 case RED:
                     rentList = new int[]{2,3,6};
@@ -26,7 +26,7 @@ public class MulticoloredProperty extends PropertyCard{
                     rentList = new int[]{3,8};
                 case LIGHT_BLUE:
                     rentList = new int[]{1,2,3};
-                case LIGHT_GREEN:
+                case UTILITY:
                     rentList = new int[]{1,2};
                 case BROWN:
                     rentList = new int[]{1,2};
@@ -36,7 +36,7 @@ public class MulticoloredProperty extends PropertyCard{
                     rentList = new int[]{2,4,6};
                 case ORANGE:
                     rentList = new int[]{1,3,5};
-                case PURPLE:
+                case PINK:
                     rentList = new int[]{1,2,4};
             }
 
