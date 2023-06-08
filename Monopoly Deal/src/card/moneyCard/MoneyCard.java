@@ -12,7 +12,7 @@ public class MoneyCard extends Card implements Bank {
     }
 
     @Override
-    public void Bank(Player player) {
+    public void bank(Player player) {
         player.bankCount.add(this);
         player.decks.remove(this);
     }

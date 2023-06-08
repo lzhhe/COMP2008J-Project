@@ -3,7 +3,10 @@ package general;
 import card.Card;
 import card.CardKind;
 
+import card.actionCard.ActionCard;
+import card.actionCard.PassGo;
 import card.actionCard.steal.StealDeal;
+import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
 
 import java.util.Objects;
@@ -23,7 +26,7 @@ public class Round {
     public boolean inRound(){
         boolean win = false;
 
-        
+
         if (player.decks.size()==0){
             for (int i=0; i<5;i++){
                 Card card= cardLibrary.pop();
@@ -44,7 +47,7 @@ public class Round {
         while(step<3){
             boolean status = oneStep();
             if (!status){
-
+                //pass
                 break;
 
             }
@@ -62,12 +65,14 @@ public class Round {
     }
 
     public boolean oneStep(){
+        //need print
+        player.printDeck();
 
         //accept the input of user
         Action action = null;
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("please insert what What do you want to do: ");
+        System.out.println("please insert what do you want to do: ");
         String userInput = scanner.nextLine();
         try {
             action = Action.valueOf(userInput);
@@ -79,79 +84,83 @@ public class Round {
         }
 
         if (action != null) {
-            String useOrder;
-            String[] parts;
-            scanner = new Scanner(System.in);
-            useOrder = scanner.nextLine();
-            parts = useOrder.split(" ");
+
+
+
 
             switch (action){
                 //use card and ask information //switch
                 //do some action
                 case BANK:
-
-                    for (Card card : player.decks){
-                        if (Objects.equals(card.name, parts[0])){
-                            player.bank(card);
-                        }
+                    System.out.println("please choose a money card");
+                    Card bankCard = player.selectCardInDeck();
+                    if (bankCard  instanceof MoneyCard card1){
+                        card1.bank(player);
+                    }else if (bankCard  instanceof ActionCard card1){
+                        card1.bank(player);
                     }
+                    break;
 
-                    //action card name or money card
+
+
                 case USE:
-                    CardKind useCard = CardKind.valueOf(parts[0]);
+                    System.out.println("please choose a card");
+                    Card card = player.selectCardInDeck();
+                    CardKind useCard = card.cardKind;
                     switch (useCard){
-                        case PropertyCard  :
-                            //add to propertyList
-                            String name  = parts[1];
-                            for (Card card:player.decks){
-                                if (card instanceof PropertyCard propertyCard){
-                                    if (Objects.equals(name,propertyCard.name)){
-                                        propertyCard.use(player);
-                                        break;
-                                    }
-                                }
-                            }
+                        case PropertyCard:
+                            System.out.println("you choose a property card");
+                            PropertyCard propertyCard = (PropertyCard) card;
+                            propertyCard.use(player);
+                            player.printProperty();
+
+                            break;
+
                         case StealDeal:
-                            String userName = parts[1];
-                            String targetName = parts[2];
-                            Colour colour = Colour.valueOf(parts[3]);
-                            Player target = null;
-                            for (Player player : playerList){
+                            break;
 
-                                if (Objects.equals(player.name,targetName)){
-                                    target = player;
-                                }
-                            }
-                            for (Card card:player.decks){
-                                if (card instanceof StealDeal stealDeal){
-                                    stealDeal.use(player,target,colour);
-                                }
-                            }
 
-                            discard.add(new StealDeal());
                         case DealBreaker:
+                            break;
+
                         case PassGo:
+                            PassGo passGo = (PassGo) card;
+                            passGo.use(player);
+                            break;
                         case ForceDeal:
+                            break;
+
                         case DoubleRent:
-                        case SayNo:
+                            break;
+
+                        /*case SayNo:
+                            break;*/
+
                         case BuildHouse:
+                            break;
+
                         case BuildHotel:
+                            break;
+
                         case BirthdayCard:
+                            break;
+
                         case DebtCollector:
+                            break;
+
                         case RectCard:
+                            break;
+
                         case MulticoloredRentCard:
+                            break;
+
 
 
                     }
 
 
                 case FLIP:
-
-
-
-
-
-
+                    break;
 
 
                     //name of a wild card

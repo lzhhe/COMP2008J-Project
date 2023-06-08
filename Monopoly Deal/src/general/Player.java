@@ -6,9 +6,7 @@ import card.propertyCard.PropertyCard;
 import static general.Game.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 //import java.time.LocalDate;
 
@@ -85,7 +83,7 @@ public class Player {
     }
 
     //the card to pay for rent
-    public void pay (ArrayList<Card> demand){
+    /*public void pay (ArrayList<Card> demand){
         for (Card card: demand){
             if (card instanceof MoneyCard){
                 bankCount.remove(card);
@@ -98,11 +96,24 @@ public class Player {
                 throw new IllegalArgumentException("this card is not in this player deck, it must be bugs");
             }
         }
+    }*/
+
+    public void pay (int rentValue){
+
+        //check the total value
+        if (totalValue()==0){
+
+        }
+
     }
 
     public void deleteCard(){
         while (decks.size()>7){
-            //wait player choose
+            System.out.println("cards in your deck is over 7 please select and drop them");
+            printDeck();
+            Card temp = selectCardInDeck();
+            decks.remove(temp);
+            discard.add(temp);
 
         }
     }
@@ -110,9 +121,16 @@ public class Player {
 
 
 
-    public void selectCardInDeck(String cardName){
+    public Card selectCardInDeck(){
 
-
+        Scanner in = new Scanner(System.in);
+        int index = in.nextInt()-1;
+        if(index>decks.size()-1){
+            System.out.println("it is out of index of your decks, please try again");
+            return selectCardInDeck();
+        }else{
+            return decks.get(index);
+        }
 
     }
 
@@ -133,7 +151,7 @@ public class Player {
         int count = 0;
         for (ArrayList<PropertyCard> propertyCards : propertiesByColour.values()){
             if (completeSet(propertyCards)){
-            	
+
                 count++;
             }
         }
@@ -174,9 +192,11 @@ public class Player {
     //we override toString method and use in here
     //but in other print method it is unnecessary to print all information
     public void printDeck(){
-        String str = "your deck: ";
+        String str = "your deck: "+"\n";
+        int i=1;
         for (Card card : decks){
-            str = str+card.toString()+" ";
+            str = str+"["+i+"]"+card.toString()+"\n";
+            i++;
 
         }
         str=str+"\n";
@@ -205,7 +225,7 @@ public class Player {
             colour = value;
             colourName = colour.name();
             number = propertiesByColour.get(colour).size();
-            str = str + colourName+" : " + number + " ";
+            str = str + colourName+": " + number + " ";
 
 
         }

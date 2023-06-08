@@ -115,6 +115,47 @@ public class Game {
 		//Properties
 		//2 Blue, 2 Brown, 2 Utility, 3 Green, 3 Yellow, 3 Red, 3 Orange, 3 Pink, 3 Light Blue, 4 Railroad
 
+		cardLibrary.add(new PropertyCard(4,"Blue1",CardKind.PropertyCard,new int[]{3,8},Colour.BLUE));
+		cardLibrary.add(new PropertyCard(4,"Blue2",CardKind.PropertyCard,new int[]{3,8},Colour.BLUE));
+
+
+		cardLibrary.add(new PropertyCard(1,"Brown1",CardKind.PropertyCard,new int[]{1,2},Colour.BROWN));
+		cardLibrary.add(new PropertyCard(1,"Brown2",CardKind.PropertyCard,new int[]{1,2},Colour.BROWN));
+
+		cardLibrary.add(new PropertyCard(1,"Utility1",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
+		cardLibrary.add(new PropertyCard(1,"Utility2",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
+
+		cardLibrary.add(new PropertyCard(4,"Utility1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
+		cardLibrary.add(new PropertyCard(4,"Utility1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
+		cardLibrary.add(new PropertyCard(4,"Utility1",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
+
+		cardLibrary.add(new PropertyCard(3,"Yellow1",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
+		cardLibrary.add(new PropertyCard(3,"Yellow2",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
+		cardLibrary.add(new PropertyCard(3,"Yellow3",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
+
+		cardLibrary.add(new PropertyCard(3,"Red1",CardKind.PropertyCard,new int[]{2,3,6},Colour.RED));
+		cardLibrary.add(new PropertyCard(3,"Red2",CardKind.PropertyCard,new int[]{2,3,6},Colour.RED));
+		cardLibrary.add(new PropertyCard(3,"Red3",CardKind.PropertyCard,new int[]{2,3,6},Colour.RED));
+
+		cardLibrary.add(new PropertyCard(2,"Orange1",CardKind.PropertyCard,new int[]{1,3,5},Colour.ORANGE));
+		cardLibrary.add(new PropertyCard(2,"Orange2",CardKind.PropertyCard,new int[]{1,3,5},Colour.ORANGE));
+		cardLibrary.add(new PropertyCard(2,"Orange3",CardKind.PropertyCard,new int[]{1,3,5},Colour.ORANGE));
+
+		cardLibrary.add(new PropertyCard(2,"Pink1",CardKind.PropertyCard,new int[]{1,2,4},Colour.PINK));
+		cardLibrary.add(new PropertyCard(2,"Pink2",CardKind.PropertyCard,new int[]{1,2,4},Colour.PINK));
+		cardLibrary.add(new PropertyCard(2,"Pink3",CardKind.PropertyCard,new int[]{1,2,4},Colour.PINK));
+
+		cardLibrary.add(new PropertyCard(1,"lightBlue1",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
+		cardLibrary.add(new PropertyCard(1,"lightBlue2",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
+		cardLibrary.add(new PropertyCard(1,"lightBlue3",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
+
+		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
+		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
+		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
+		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
+
+
+
 
 
 		//Wildcards

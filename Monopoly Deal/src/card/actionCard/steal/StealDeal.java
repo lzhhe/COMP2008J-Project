@@ -32,5 +32,6 @@ public class StealDeal extends ActionCard  implements Steal {
         }
 
         user.decks.remove(this);
+
     }
 }
