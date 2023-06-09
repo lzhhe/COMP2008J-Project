@@ -30,5 +30,8 @@ public class StealDeal extends ActionCard  implements Steal {
             newList.add(targetPropertyCard);
             user.propertiesByColour.put(colour,newList);
         }
+
+        user.decks.remove(this);
+
     }
 }
