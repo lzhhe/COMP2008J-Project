@@ -19,5 +19,7 @@ public class PassGo extends ActionCard {
             user.decks.add(card);
         }
 
+        user.decks.remove(this);
+
     }
 }

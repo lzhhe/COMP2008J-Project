@@ -15,11 +15,13 @@ public class StealDeal extends ActionCard  implements Steal {
 
     @Override
     public void use(Player user, Player target, Colour colour) {
-        PropertyCard targetPropertyCard = target.propertiesByColour.get(colour).get(0);
+        if (target.whetherSayNo()){
+            return;
+        }
 
-        ArrayList<PropertyCard> targetOriginalList = target.propertiesByColour.get(colour);
-        targetOriginalList.add(targetPropertyCard);
-        target.propertiesByColour.replace(colour,targetOriginalList);
+
+
+        PropertyCard targetPropertyCard = target.propertiesByColour.get(colour).get(0);
 
         if (user.propertiesByColour.containsKey(colour)){
             ArrayList<PropertyCard> originalList = user.propertiesByColour.get(colour);
@@ -30,6 +32,11 @@ public class StealDeal extends ActionCard  implements Steal {
             newList.add(targetPropertyCard);
             user.propertiesByColour.put(colour,newList);
         }
+
+        ArrayList<PropertyCard> tempArrayList = target.propertiesByColour.get(colour);
+        tempArrayList.remove(targetPropertyCard);
+        target.propertiesByColour.replace(colour,tempArrayList);
+
 
         user.decks.remove(this);
 

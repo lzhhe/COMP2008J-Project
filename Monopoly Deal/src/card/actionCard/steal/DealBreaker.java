@@ -17,6 +17,9 @@ public class DealBreaker extends ActionCard implements Steal {
 
     @Override
     public void use(Player user, Player target, Colour colour) {
+        if (target.whetherSayNo()){
+            return;
+        }
 
 
         ArrayList<PropertyCard> targetList = target.propertiesByColour.get(colour);

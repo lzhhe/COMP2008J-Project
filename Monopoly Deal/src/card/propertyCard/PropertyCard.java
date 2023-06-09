@@ -46,6 +46,8 @@ public class PropertyCard extends Card {
 
     }
 
+
+
     public Colour getColour(){
         return colour;
     }

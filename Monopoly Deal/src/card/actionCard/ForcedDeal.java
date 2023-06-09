@@ -13,5 +13,8 @@ public class ForcedDeal extends ActionCard{
 
     public void use(Player user, Player target, Colour colour,Colour targetColour) {
 
+
+
+
     }
 }

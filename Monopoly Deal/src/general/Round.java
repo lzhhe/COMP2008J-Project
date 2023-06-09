@@ -5,9 +5,11 @@ import card.CardKind;
 
 import card.actionCard.ActionCard;
 import card.actionCard.PassGo;
+import card.actionCard.steal.DealBreaker;
 import card.actionCard.steal.StealDeal;
 import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
+import card.propertyCard.wildCard.MulticoloredProperty;
 import card.propertyCard.wildCard.WildCard;
 
 import java.util.ArrayList;
@@ -42,10 +44,6 @@ public class Round {
             }
         }
 
-
-
-
-
         while(step<3){
             int status = oneStep();
             if (status==-1){
@@ -68,6 +66,11 @@ public class Round {
         }
 
         player.deleteCard();
+        if (cardLibrary.size()<7){
+            cardLibrary.addAll(discard);
+            shuffle();
+
+        }
         return win;
     }
 
@@ -86,7 +89,7 @@ public class Round {
         Action action = null;
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("please insert what do you want to do: ");
+        System.out.println("please insert what do you want to do: (BANK/USE/FLIP/PASS)");
         String userInput = scanner.nextLine();
         try {
             action = Action.valueOf(userInput);
@@ -107,7 +110,7 @@ public class Round {
                     Card bankCard = player.selectCardInDeck();
                     if (bankCard  instanceof MoneyCard card1){
                         card1.bank(player);
-                    }else if (bankCard  instanceof ActionCard card1){
+                    }else if (bankCard instanceof ActionCard card1){
                         card1.bank(player);
                     }
                     return 1;
@@ -118,16 +121,24 @@ public class Round {
                     System.out.println("please choose a card");
                     Card card = player.selectCardInDeck();
                     CardKind useCard = card.cardKind;
-                    //System.out.println(useCard.toString());
+
+
                     switch (useCard){
                         //different enum so it need to divide
+
                         case WildCard:
                             System.out.println("you choose a wild card");
                             WildCard wildCard =(WildCard) card;
                             wildCard.use(player);
                             player.printProperty();
                             break;
+                        /*case MulticoloredProperty:
+                            System.out.println("you choose a multicolored property card");
+                            MulticoloredProperty multicoloredProperty =(MulticoloredProperty) card;
+                            multicoloredProperty.use(player);
+                            player.printProperty();
 
+                            break;*/
                         case PropertyCard:
                             System.out.println("you choose a property card");
                             PropertyCard propertyCard =(PropertyCard) card;
@@ -137,10 +148,13 @@ public class Round {
                             break;
 
                         case StealDeal:
+                            StealDeal stealDeal = (StealDeal) card;
+                            stealDeal.use(player,insertPlayer(),insetColour());
                             break;
 
-
                         case DealBreaker:
+                            DealBreaker dealBreaker = (DealBreaker) card;
+                            dealBreaker.use(player,insertPlayer(),insetColour());
                             break;
 
                         case PassGo:
@@ -148,13 +162,12 @@ public class Round {
                             passGo.use(player);
                             break;
                         case ForceDeal:
+
                             break;
 
-                        case DoubleRent:
-                            break;
-
-                        /*case SayNo:
+                        /*case DoubleRent:
                             break;*/
+
 
                         case BuildHouse:
                             break;
@@ -177,6 +190,7 @@ public class Round {
 
 
                     }
+                    discard.add(card);
                     return 1;
 
 
@@ -199,6 +213,8 @@ public class Round {
                     }
 
 
+
+
                     return 0;
 
 
@@ -211,6 +227,28 @@ public class Round {
             }
         }
         return -1;
+
+    }
+
+    public Player insertPlayer(){
+        System.out.println("Please insert a target");
+        Scanner in = new Scanner(System.in);
+        String name  = in.next();
+        for (Player target:playerList){
+            if (Objects.equals(target.name, name)){
+                return target;
+            }
+
+        }
+
+        return null;
+    }
+
+    public Colour insetColour(){
+        System.out.println("Please insert a colour");
+        Scanner in = new Scanner(System.in);
+        return Colour.valueOf(in.next());
+
 
     }
 

@@ -1,6 +1,8 @@
 package general;
 
 import card.Card;
+import card.actionCard.ActionCard;
+import card.actionCard.SayNo;
 import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
 import card.propertyCard.wildCard.WildCard;
@@ -88,8 +90,13 @@ public class Player {
         }
     }
 
+    public void receiveProperty(PropertyCard propertyCard){
+        ArrayList<PropertyCard> tempArrayList = propertiesByColour.get(propertyCard.colour);
+        tempArrayList.add(propertyCard);
+        propertiesByColour.replace(propertyCard.colour,tempArrayList);
 
 
+    }
 
     public Card selectCardInDeck(){
 
@@ -109,37 +116,37 @@ public class Player {
         Action action = Action.valueOf(in.next());
         Card card = null;
         int orderValue;
-        switch (action){
-            case CASH:
+        System.out.println("Please choose how you want to pay for this rent");
+        switch (action) {
+            case CASH -> {
                 System.out.println("Please insert value of cash");
                 in = new Scanner(System.in);
                 orderValue = in.nextInt();
-                for (Card moneyCard : bankCount){
-                    if (moneyCard.value==orderValue){
+                for (Card moneyCard : bankCount) {
+                    if (moneyCard.value == orderValue) {
                         card = moneyCard;
                         bankCount.remove(card);
                         return card;
                     }
                 }
-                break;
-            case PROPERTY:
+            }
+            case PROPERTY -> {
                 System.out.println("Please insert a colour and value(to decide use wildcard or not)");
                 in = new Scanner(System.in);
                 Colour colour = Colour.valueOf(in.next());
                 orderValue = in.nextInt();
-                ArrayList<PropertyCard> tempArrayList= propertiesByColour.get(colour);
-                for (PropertyCard propertyCard: tempArrayList){
-                    if (propertyCard.value==orderValue){
+                ArrayList<PropertyCard> tempArrayList = propertiesByColour.get(colour);
+                for (PropertyCard propertyCard : tempArrayList) {
+                    if (propertyCard.value == orderValue) {
                         card = propertyCard;
                         tempArrayList.remove(propertyCard);
-                        propertiesByColour.replace(colour,tempArrayList);
+                        propertiesByColour.replace(colour, tempArrayList);
                         return card;
                     }
                 }
-
-                break;
+            }
         }
-        //to finish, if the user insert a correct value it can not arrive here.
+        //just for to finish, if the user insert a correct value it can not arrive here.
         return card;
 
 
@@ -152,8 +159,8 @@ public class Player {
 
         //check the total value
         while (rentValue>0&&totalValue()!=0){
+            System.out.println("You still need to pay "+rentValue);
             card = selectBankAndProperty();
-
             rentValue = rentValue-card.value;
             giveList.add(card);
 
@@ -161,15 +168,15 @@ public class Player {
 
         for (Card card1:giveList){
             if (card1 instanceof MoneyCard moneyCard){
-                moneyCard.bank(target);
+                target.bankCount.add(moneyCard);
+            }else if (card1 instanceof ActionCard moneyCard){
+                target.bankCount.add(moneyCard);
             }else if (card1 instanceof PropertyCard propertyCard){
-                propertyCard.use(target);
+                target.receiveProperty(propertyCard);
             }
         }
 
     }
-
-
 
 
 
@@ -200,20 +207,35 @@ public class Player {
     }
 
 
+    public boolean whetherSayNo(){
+        for (Card card :decks){
+            if (card instanceof SayNo){
+                System.out.println("You have a SayNo card, do you want to use? YES/NO");
+                Scanner in = new Scanner(System.in);
+                Action action = Action.valueOf(in.next());
 
+                switch (action){
+                    case YES:
+                        System.out.println("OOPS! The target player use SayNo card");
+                        decks.remove(card);
+                        return true;
+                    case NO:
 
-
-
-    public ArrayList<Card> getDecks() {
-        return this.decks;
+                        return false;
+                }
+            }
+        }
+        //just for finish
+        return false;
     }
 
-    public void setBlocked(){
-        this.block=2;
+
+    public void addProperty(Colour colour){
+
     }
 
-    public boolean isBlocking(){
-        return this.block>0;
+    public void getAndRemoveProperty(Colour colour){
+        propertiesByColour.get(colour).get(0);
     }
 
 
@@ -290,7 +312,7 @@ public class Player {
         //System.out.println("\n");
     }
 
-    //use for check other player inforamtion except decks in hand.
+    //use for check other player information except decks in hand.
     public void printBankAndProperty(){
 
         printBank();

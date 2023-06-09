@@ -66,4 +66,8 @@ public class MulticoloredProperty extends PropertyCard{
         }
     }
 
+    public void use(Player player){
+        super.use(player);
+    }
+
 }

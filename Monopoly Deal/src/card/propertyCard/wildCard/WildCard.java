@@ -21,8 +21,8 @@ public class WildCard extends PropertyCard{
     }
 
     public void use(Player player){
-        System.out.println("wildCard method");
-        if (player.propertiesByColour.containsKey(colour)){
+        //System.out.println("wildCard method");
+        /*if (player.propertiesByColour.containsKey(colour)){
             ArrayList<PropertyCard>newList = player.propertiesByColour.get(colour);
             newList.add(this);
             player.propertiesByColour.replace(colour,newList);
@@ -30,7 +30,8 @@ public class WildCard extends PropertyCard{
             ArrayList<PropertyCard> tempArrayList = new ArrayList<PropertyCard>();
             tempArrayList.add(this);
             player.propertiesByColour.put(colour,tempArrayList);
-        }
+        }*/
+        super.use(player);
 
         player.decks.remove(this);
     }
