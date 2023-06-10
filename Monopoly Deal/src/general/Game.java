@@ -2,8 +2,19 @@ package general;
 
 import card.Card;
 import card.CardKind;
+import card.actionCard.DoubleRent;
+import card.actionCard.ForcedDeal;
+import card.actionCard.PassGo;
+import card.actionCard.SayNo;
+import card.actionCard.buildHouse.BuildHotel;
+import card.actionCard.buildHouse.BuildHouse;
+import card.actionCard.aoe.BirthdayCard;
+import card.actionCard.singleChoice.DebtCollector;
+import card.actionCard.singleChoice.MulticoloredRentCard;
+import card.actionCard.aoe.RentCard;
 import card.actionCard.steal.DealBreaker;
 import card.actionCard.steal.StealDeal;
+import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
 import card.propertyCard.wildCard.MulticoloredProperty;
 import card.propertyCard.wildCard.WildCard;
@@ -80,7 +91,7 @@ public class Game {
 
 		//set up library
 
-		//6 cards of 1M, 5 cards of 2M, 3 cards of 3M, 3 cards of 4M, 2 cards of 5M?? 1 card of 10M.
+		//6 cards of 1M, 5 cards of 2M, 3 cards of 3M, 3 cards of 4M, 2 cards of 5M, 1 card of 10M.
 
 		/*cardLibrary.add(new MoneyCard(1,"1M"));
 		cardLibrary.add(new MoneyCard(1,"1M"));
@@ -173,7 +184,7 @@ public class Game {
 
 		//Action Cards
 		//2 Deal Breaker, 3 Just Say No, 3 Sly Deal, 4 Force Deal, 3 Debt
-		//Collector, 3 It??s My Birthday, 10 Pass Go, 3 House, 3 Hotel, and 2 Double The Rent Cards
+		//Collector, 3 It’s My Birthday, 10 Pass Go, 3 House, 3 Hotel, and 2 Double The Rent Cards
 		cardLibrary.add(new DealBreaker());
 		cardLibrary.add(new DealBreaker());
 		/*cardLibrary.add(new SayNo());

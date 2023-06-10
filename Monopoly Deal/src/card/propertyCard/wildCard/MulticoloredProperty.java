@@ -14,55 +14,56 @@ public class MulticoloredProperty extends PropertyCard{
     //In initialization, not any specific parameter to avoid some trouble (not sure)
     //value is 0 forever
 
-    public void flip(Player player, Colour newColour){// user need input a colour to avoid null before using
-        if (player.propertiesByColour.get(this.colour).isEmpty()){
-            System.out.print("You can not flip, you have not any property card in this colour");
-        }else{
-            if (this.colour!=null){//have been put in other colour need to be removed
+    public void flip(Player player, Colour newColour) {// user need input a colour to avoid null before using
+        if (player.propertiesByColour.containsKey(this.colour) && player.propertiesByColour.get(this.colour).isEmpty()) {
+            System.out.print("You cannot flip, you do not have any property cards in this colour.");
+        } else {
+            if (this.colour != null) {//have been put in other colour need to be removed
                 ArrayList<PropertyCard> tempArrayList = player.propertiesByColour.get(this.colour);
-                tempArrayList.remove(this);
-
+                if (tempArrayList != null) {
+                    tempArrayList.remove(this);
+                }
             }
             this.colour = newColour;
-            switch(newColour){
+            switch (newColour) {
                 case RAILROAD:
                     rentList = new int[]{1, 2, 3, 4};
                     break;
                 case RED:
-                    rentList = new int[]{2,3,6};
+                    rentList = new int[]{2, 3, 6};
                     break;
                 case BLUE:
-                    rentList = new int[]{3,8};
+                    rentList = new int[]{3, 8};
                     break;
                 case LIGHT_BLUE:
-                    rentList = new int[]{1,2,3};
+                    rentList = new int[]{1, 2, 3};
                     break;
                 case UTILITY:
-                    rentList = new int[]{1,2};
+                    rentList = new int[]{1, 2};
                     break;
                 case BROWN:
-                    rentList = new int[]{1,2};
+                    rentList = new int[]{1, 2};
                     break;
                 case GREEN:
-                    rentList = new int[]{2,4,7};
+                    rentList = new int[]{2, 4, 7};
                     break;
                 case YELLOW:
-                    rentList = new int[]{2,4,6};
+                    rentList = new int[]{2, 4, 6};
                     break;
                 case ORANGE:
-                    rentList = new int[]{1,3,5};
+                    rentList = new int[]{1, 3, 5};
                     break;
                 case PINK:
-                    rentList = new int[]{1,2,4};
+                    rentList = new int[]{1, 2, 4};
                     break;
             }
 
             ArrayList<PropertyCard> tempArrayList = player.propertiesByColour.get(newColour);
+            if (tempArrayList == null) {
+                tempArrayList = new ArrayList<>();
+            }
             tempArrayList.add(this);
-            player.propertiesByColour.replace(newColour,tempArrayList);
-
-
-
+            player.propertiesByColour.replace(newColour, tempArrayList);
         }
     }
 
