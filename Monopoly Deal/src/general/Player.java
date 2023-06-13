@@ -2,6 +2,7 @@ package general;
 
 import card.Card;
 import card.actionCard.ActionCard;
+import card.actionCard.DoubleRent;
 import card.actionCard.SayNo;
 import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
@@ -228,6 +229,28 @@ public class Player {
                 switch (action){
                     case YES:
                         System.out.println("OOPS! The target player use SayNo card");
+                        decks.remove(card);
+                        return true;
+                    case NO:
+
+                        return false;
+                }
+            }
+        }
+        //just for finish
+        return false;
+    }
+
+    public boolean whetherDoubleRent(){
+        for (Card card :decks){
+            if (card instanceof DoubleRent){
+                System.out.println(name + " have a double rent card, do you want to use? YES/NO");
+                Scanner in = new Scanner(System.in);
+                Action action = Action.valueOf(in.next());
+
+                switch (action){
+                    case YES:
+                        System.out.println("OK, you have used this card to double rent");
                         decks.remove(card);
                         return true;
                     case NO:
