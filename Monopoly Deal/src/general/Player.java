@@ -6,6 +6,7 @@ import card.actionCard.DoubleRent;
 import card.actionCard.SayNo;
 import card.moneyCard.MoneyCard;
 import card.propertyCard.PropertyCard;
+import card.propertyCard.wildCard.MulticoloredProperty;
 import card.propertyCard.wildCard.WildCard;
 
 import static general.Game.*;
@@ -114,7 +115,7 @@ public class Player {
     }
 
     public Card selectBankAndProperty(){
-        System.out.println("Please choose how you want to pay for this rent");
+        System.out.println("Please choose how you want to pay for this rent (CASH/PROPERTY)");
 
         Scanner in = new Scanner(System.in);
         Action action = Action.valueOf(in.next());
@@ -230,6 +231,7 @@ public class Player {
                     case YES:
                         System.out.println("OOPS! The target player use SayNo card");
                         decks.remove(card);
+                        discard.add(card);
                         return true;
                     case NO:
 
@@ -252,6 +254,7 @@ public class Player {
                     case YES:
                         System.out.println("OK, you have used this card to double rent");
                         decks.remove(card);
+                        discard.add(card);
                         return true;
                     case NO:
 
@@ -308,7 +311,9 @@ public class Player {
         for (ArrayList<PropertyCard> propertyCards : propertiesByColour.values()){
             for (PropertyCard propertyCard : propertyCards){
                 if (propertyCard instanceof WildCard wildCard){
-                    str = str + wildCard.colour.toString() + " " + wildCard.otherColour.toString();
+                    str = str + "current colour: "+wildCard.colour.toString() + " other colour: " + wildCard.otherColour.toString()+"\n";
+                }else if (propertyCard instanceof MulticoloredProperty multicoloredProperty){
+                    str = str + "multicolored Property card current colour: " + multicoloredProperty.colour.toString()+"\n";
                 }
             }
         }

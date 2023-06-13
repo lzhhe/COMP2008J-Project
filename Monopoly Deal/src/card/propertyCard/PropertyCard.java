@@ -12,7 +12,9 @@ public class PropertyCard extends Card {
     public int fullSets;//after improving , this variable may not be inserted by user, it depends on the length of rentList
     public Colour colour;
     public int[] rentList;//depend on the number in fullSets
-    public boolean addHouse = true;
+
+    //here refactor it to present it has been add a house and can add hotel
+    public boolean addHouse = false;
 
 
     public PropertyCard(int value, String name, CardKind cardkind, int[] rentList,Colour colour){
@@ -20,9 +22,9 @@ public class PropertyCard extends Card {
         this.fullSets = rentList.length;
         this.rentList = rentList;//one house ... dollars, two houses ... dollars, three houses ... dollars(optional)
         this.colour = colour;// from Colour Enum
-        if (colour == Colour.UTILITY || colour==Colour.RAILROAD){//industry can nor add house or hotel
+        /*if (colour == Colour.UTILITY || colour==Colour.RAILROAD){//industry can not add house or hotel
             addHouse = false;
-        }
+        }*/
 
     }
 

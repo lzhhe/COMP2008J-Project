@@ -4,10 +4,14 @@ import card.Card;
 import card.CardKind;
 
 import card.actionCard.ActionCard;
+import card.actionCard.ForcedDeal;
 import card.actionCard.PassGo;
 import card.actionCard.aoe.BirthdayCard;
 import card.actionCard.aoe.RentCard;
+import card.actionCard.buildHouse.BuildHotel;
+import card.actionCard.buildHouse.BuildHouse;
 import card.actionCard.singleChoice.DebtCollector;
+import card.actionCard.singleChoice.MulticoloredRentCard;
 import card.actionCard.steal.DealBreaker;
 import card.actionCard.steal.StealDeal;
 import card.moneyCard.MoneyCard;
@@ -91,6 +95,7 @@ public class Round {
         }
         System.out.println("your cards");
         player.printDeck();
+        player.printBankAndProperty();
 
         //accept the input of user
         Action action = null;
@@ -139,13 +144,12 @@ public class Round {
                             wildCard.use(player);
                             player.printProperty();
                             break;
-                        /*case MulticoloredProperty:
+                        case MulticoloredProperty:
                             System.out.println("you choose a multicolored property card");
                             MulticoloredProperty multicoloredProperty =(MulticoloredProperty) card;
                             multicoloredProperty.use(player);
                             player.printProperty();
-
-                            break;*/
+                            break;
                         case PropertyCard:
                             System.out.println("you choose a property card");
                             PropertyCard propertyCard =(PropertyCard) card;
@@ -172,20 +176,24 @@ public class Round {
                             passGo.use(player);
                             break;
                         case ForceDeal:
-
-
+                            System.out.println("you choose to use a force deal card");
+                            System.out.println("Please insert parameter following this order: target player, target colour, your colour");
+                            ForcedDeal forcedDeal = (ForcedDeal) card;
+                            forcedDeal.use(player,insertPlayer(),insetColour(),insetColour());
                             break;
-
-                        /*case DoubleRent:
-                            break;*/
-
 
                         case BuildHouse:
                             System.out.println("Please insert a colour to build house");
+                            BuildHouse buildHouse = (BuildHouse) card;
+                            buildHouse.use(player,insetColour());
+
                             break;
 
                         case BuildHotel:
                             System.out.println("Please insert a colour to build hotel");
+                            BuildHotel buildHotel = (BuildHotel) card;
+                            buildHotel.use(player,insetColour());
+
                             break;
 
                         case BirthdayCard:
@@ -196,9 +204,8 @@ public class Round {
 
                         case DebtCollector:
                             System.out.println("you choose to use a debt collector card, please insert a player to ask 5M");
-                            Player target = insertPlayer();
                             DebtCollector debtCollector = (DebtCollector) card;
-                            debtCollector.use(player,target);
+                            debtCollector.use(player,insertPlayer());
                             break;
 
                         case RectCard:
@@ -209,6 +216,8 @@ public class Round {
 
                         case MulticoloredRentCard:
                             System.out.println("you choose to use a multicolored rent card, please insert a colour and a player to rent");
+                            MulticoloredRentCard multicoloredRentCard = (MulticoloredRentCard) card;
+                            multicoloredRentCard.use(player,insertPlayer());
                             break;
 
 
@@ -219,22 +228,25 @@ public class Round {
 
 
                 case FLIP:
-                    System.out.println("please insert the origin colour");
-                    Scanner in  = new Scanner(System.in);
-                    String colour1Name = in.next();
+                    System.out.println("please insert a original colour");
 
-                    Colour originalColour = Colour.valueOf(colour1Name);
+                    Colour originalColour = insetColour();
 
                     ArrayList<PropertyCard> tempList=player.propertiesByColour.get(originalColour);
-                    WildCard wildCard = null;
+
                     for (PropertyCard propertyCard:tempList){
-                        if (propertyCard instanceof WildCard){
-                            wildCard =(WildCard) propertyCard;
+                        if (propertyCard instanceof WildCard wildCard)
+                        {
+                            wildCard.flip(player);
+                            break;
+                        }else if (propertyCard instanceof MulticoloredProperty multicoloredProperty){
+                            System.out.println("detect a multicoloredProperty card, you need insert a new target colour");
+                            Colour targetColour  = insetColour();
+                            multicoloredProperty.flip(player,targetColour);
+                            break;
                         }
                     }
-                    if (wildCard != null) {
-                        wildCard.flip(player);
-                    }
+
 
                     return 0;
 

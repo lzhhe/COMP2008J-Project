@@ -34,8 +34,9 @@ public class RentCard extends ActionCard implements AOE {
         Colour colour = choice==1?colour1:colour2;
         int number = user.propertiesByColour.get(colour).size();
         //in case oversize
-        number= Math.max(user.propertiesByColour.get(colour).get(0).fullSets, number);
-        int rent = user.propertiesByColour.get(colour).get(0).rentList[number];
+        number= Math.min(user.propertiesByColour.get(colour).get(0).fullSets, number);
+        int rent = user.propertiesByColour.get(colour).get(0).rentList[number-1];
+
 
         System.out.println("The rent you ask is "+rent);
 
@@ -57,18 +58,7 @@ public class RentCard extends ActionCard implements AOE {
         user.decks.remove(this);
 
 
-
-
-
-
-
     }
-
-
-
-
-    ;
-
 
 
 }

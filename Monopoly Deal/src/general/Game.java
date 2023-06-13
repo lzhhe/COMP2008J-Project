@@ -7,9 +7,11 @@ import card.actionCard.ForcedDeal;
 import card.actionCard.PassGo;
 import card.actionCard.SayNo;
 import card.actionCard.aoe.BirthdayCard;
+import card.actionCard.aoe.RentCard;
 import card.actionCard.buildHouse.BuildHotel;
 import card.actionCard.buildHouse.BuildHouse;
 import card.actionCard.singleChoice.DebtCollector;
+import card.actionCard.singleChoice.MulticoloredRentCard;
 import card.actionCard.steal.DealBreaker;
 import card.actionCard.steal.StealDeal;
 import card.moneyCard.MoneyCard;
@@ -91,7 +93,7 @@ public class Game {
 
 		//6 cards of 1M, 5 cards of 2M, 3 cards of 3M, 3 cards of 4M, 2 cards of 5M?? 1 card of 10M.
 
-		cardLibrary.add(new MoneyCard(1,"1M"));
+		/*cardLibrary.add(new MoneyCard(1,"1M"));
 		cardLibrary.add(new MoneyCard(1,"1M"));
 		cardLibrary.add(new MoneyCard(1,"1M"));
 		cardLibrary.add(new MoneyCard(1,"1M"));
@@ -103,7 +105,7 @@ public class Game {
 		cardLibrary.add(new MoneyCard(2,"2M"));
 		cardLibrary.add(new MoneyCard(2,"2M"));
 		cardLibrary.add(new MoneyCard(3,"3M"));
-		/*cardLibrary.add(new MoneyCard(3,"3M"));
+		cardLibrary.add(new MoneyCard(3,"3M"));
 		cardLibrary.add(new MoneyCard(3,"3M"));
 		cardLibrary.add(new MoneyCard(4,"4M"));
 		cardLibrary.add(new MoneyCard(4,"4M"));
@@ -180,14 +182,15 @@ public class Game {
 		cardLibrary.add(new MulticoloredProperty());
 
 
+
 		//Action Cards
-		//2 Deal Breaker, 3 Just Say No, 3 Sly Deal, 4 Force Deal, 3 Debt
-		//Collector, 3 It??s My Birthday, 10 Pass Go, 3 House, 3 Hotel, and 2 Double The Rent Cards
+		//2 Deal Breaker, 3 Just Say No, 3 Sly Deal, 4 Force Deal, 3 DebtCollector,
+		//3 It's My Birthday, 10 Pass Go, 3 House, 3 Hotel, and 2 Double The Rent Cards
 		/*cardLibrary.add(new DealBreaker());
 		cardLibrary.add(new DealBreaker());*/
+		/*cardLibrary.add(new SayNo());
 		cardLibrary.add(new SayNo());
-		cardLibrary.add(new SayNo());
-		cardLibrary.add(new SayNo());
+		cardLibrary.add(new SayNo());*/
 		/*cardLibrary.add(new StealDeal());
 		cardLibrary.add(new StealDeal());
 		cardLibrary.add(new StealDeal());*/
@@ -195,12 +198,16 @@ public class Game {
 		cardLibrary.add(new ForcedDeal());
 		cardLibrary.add(new ForcedDeal());
 		cardLibrary.add(new ForcedDeal());*/
+
+
+
+		/*cardLibrary.add(new DebtCollector());
 		cardLibrary.add(new DebtCollector());
 		cardLibrary.add(new DebtCollector());
-		cardLibrary.add(new DebtCollector());
-		/*cardLibrary.add(new BirthdayCard());
 		cardLibrary.add(new BirthdayCard());
 		cardLibrary.add(new BirthdayCard());
+		cardLibrary.add(new BirthdayCard());*/
+		/*cardLibrary.add(new PassGo());
 		cardLibrary.add(new PassGo());
 		cardLibrary.add(new PassGo());
 		cardLibrary.add(new PassGo());
@@ -209,19 +216,21 @@ public class Game {
 		cardLibrary.add(new PassGo());
 		cardLibrary.add(new PassGo());
 		cardLibrary.add(new PassGo());
-		cardLibrary.add(new PassGo());
-		cardLibrary.add(new PassGo());
+		cardLibrary.add(new PassGo());*/
 		cardLibrary.add(new BuildHouse());
 		cardLibrary.add(new BuildHouse());
 		cardLibrary.add(new BuildHouse());
 		cardLibrary.add(new BuildHotel());
 		cardLibrary.add(new BuildHotel());
 		cardLibrary.add(new BuildHotel());
+		/*cardLibrary.add(new DoubleRent());
 		cardLibrary.add(new DoubleRent());
 		cardLibrary.add(new DoubleRent());*/
 
+
+
 		//Rent Cards
-		/*cardLibrary.add(new RentCard("Blue Green Rent",Colour.BLUE,Colour.GREEN));
+		cardLibrary.add(new RentCard("Blue Green Rent",Colour.BLUE,Colour.GREEN));
 		cardLibrary.add(new RentCard("Blue Green Rent",Colour.BLUE,Colour.GREEN));
 
 		cardLibrary.add(new RentCard("Red Yellow Rent",Colour.RED,Colour.YELLOW));
@@ -238,15 +247,19 @@ public class Game {
 
 		cardLibrary.add(new MulticoloredRentCard());
 		cardLibrary.add(new MulticoloredRentCard());
-		cardLibrary.add(new MulticoloredRentCard());*/
-
-
+		cardLibrary.add(new MulticoloredRentCard());
 
 		shuffle();
 
 	}
 
 	public void turnRound(){
+		for (Player player:playerList){
+			for (int i=0; i<5;i++){
+				Card card= cardLibrary.pop();
+				player.decks.add(card);
+			}
+		}
 
 		int index = playerList.indexOf(firstPlayer);
 		while (true){

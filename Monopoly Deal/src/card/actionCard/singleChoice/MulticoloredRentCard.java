@@ -25,8 +25,12 @@ public class MulticoloredRentCard extends ActionCard implements SingleChoice{
 
         int number = user.propertiesByColour.get(colour).size();
         //in case oversize
-        number= Math.max(user.propertiesByColour.get(colour).get(0).fullSets, number);
-        int rent = user.propertiesByColour.get(colour).get(0).rentList[number];
+        number= Math.min(user.propertiesByColour.get(colour).get(0).fullSets, number);
+        int rent = user.propertiesByColour.get(colour).get(0).rentList[number-1];
+
+        if (user.whetherDoubleRent()){
+            rent = rent*2;
+        }
 
 
         if (target.whetherSayNo()){
