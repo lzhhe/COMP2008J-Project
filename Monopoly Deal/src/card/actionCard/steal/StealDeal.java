@@ -16,10 +16,9 @@ public class StealDeal extends ActionCard  implements Steal {
     @Override
     public void use(Player user, Player target, Colour colour) {
         if (target.whetherSayNo()){
+            user.decks.remove(this);//need to add otherwise it may happen nothing
             return;
         }
-
-
 
         PropertyCard targetPropertyCard = target.propertiesByColour.get(colour).get(0);
 

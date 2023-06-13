@@ -18,6 +18,7 @@ public class DealBreaker extends ActionCard implements Steal {
     @Override
     public void use(Player user, Player target, Colour colour) {
         if (target.whetherSayNo()){
+            user.decks.remove(this);
             return;
         }
 

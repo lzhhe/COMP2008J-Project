@@ -25,11 +25,6 @@ public class Player {
 
     public ArrayList<Card> decks = new ArrayList<>();
 
-    public boolean doubleRent;
-    public int block = 0;// say no
-
-
-
     //give up use an ArrayList and change to use Hashmap
     //public ArrayList<PropertyCard> properties;
 
@@ -40,7 +35,6 @@ public class Player {
     public Player(String name, LocalDate birth) {
         this.name = name;
         this.birth = birth;
-        this.doubleRent = false;
         decks = new ArrayList<>();
     }
 
@@ -91,9 +85,16 @@ public class Player {
     }
 
     public void receiveProperty(PropertyCard propertyCard){
-        ArrayList<PropertyCard> tempArrayList = propertiesByColour.get(propertyCard.colour);
-        tempArrayList.add(propertyCard);
-        propertiesByColour.replace(propertyCard.colour,tempArrayList);
+        if(propertiesByColour.containsKey(propertyCard.colour)){
+            ArrayList<PropertyCard> tempArrayList = propertiesByColour.get(propertyCard.colour);
+            tempArrayList.add(propertyCard);
+            propertiesByColour.replace(propertyCard.colour,tempArrayList);
+        }else{
+            ArrayList<PropertyCard> tempArrayList = new ArrayList<>();
+            tempArrayList.add(propertyCard);
+            propertiesByColour.put(propertyCard.colour,tempArrayList);
+        }
+
 
 
     }
@@ -112,11 +113,13 @@ public class Player {
     }
 
     public Card selectBankAndProperty(){
+        System.out.println("Please choose how you want to pay for this rent");
+
         Scanner in = new Scanner(System.in);
         Action action = Action.valueOf(in.next());
         Card card = null;
         int orderValue;
-        System.out.println("Please choose how you want to pay for this rent");
+
         switch (action) {
             case CASH -> {
                 System.out.println("Please insert value of cash");
@@ -127,8 +130,10 @@ public class Player {
                         card = moneyCard;
                         bankCount.remove(card);
                         return card;
+
                     }
                 }
+                break;
             }
             case PROPERTY -> {
                 System.out.println("Please insert a colour and value(to decide use wildcard or not)");
@@ -137,13 +142,16 @@ public class Player {
                 orderValue = in.nextInt();
                 ArrayList<PropertyCard> tempArrayList = propertiesByColour.get(colour);
                 for (PropertyCard propertyCard : tempArrayList) {
+
                     if (propertyCard.value == orderValue) {
                         card = propertyCard;
                         tempArrayList.remove(propertyCard);
                         propertiesByColour.replace(colour, tempArrayList);
                         return card;
                     }
+                    System.out.println("not found 404");
                 }
+                break;
             }
         }
         //just for to finish, if the user insert a correct value it can not arrive here.
@@ -159,7 +167,10 @@ public class Player {
 
         //check the total value
         while (rentValue>0&&totalValue()!=0){
-            System.out.println("You still need to pay "+rentValue);
+
+            printBankAndProperty();
+
+            System.out.println(name + " still need to pay "+rentValue);
             card = selectBankAndProperty();
             rentValue = rentValue-card.value;
             giveList.add(card);
@@ -210,7 +221,7 @@ public class Player {
     public boolean whetherSayNo(){
         for (Card card :decks){
             if (card instanceof SayNo){
-                System.out.println("You have a SayNo card, do you want to use? YES/NO");
+                System.out.println(name + " have a SayNo card, do you want to use? YES/NO");
                 Scanner in = new Scanner(System.in);
                 Action action = Action.valueOf(in.next());
 
@@ -228,26 +239,6 @@ public class Player {
         //just for finish
         return false;
     }
-
-
-    public void addProperty(Colour colour){
-
-    }
-
-    public void getAndRemoveProperty(Colour colour){
-        propertiesByColour.get(colour).get(0);
-    }
-
-
-    public boolean isDoubleRent(){
-        return this.doubleRent;
-    }
-
-    public void setDoubleRent(boolean b){
-        this.doubleRent = b;
-    }
-
-
 
 
 
@@ -318,6 +309,8 @@ public class Player {
         printBank();
         printProperty();
     }
+
+
 
 
 

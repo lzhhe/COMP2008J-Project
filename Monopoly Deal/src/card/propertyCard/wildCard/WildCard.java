@@ -40,13 +40,9 @@ public class WildCard extends PropertyCard{
 
     public void flip(Player player) {
 
-        if (player.propertiesByColour.containsKey(colour)) {
-            ArrayList<PropertyCard> tempArrayList = player.propertiesByColour.get(colour);
-            if (tempArrayList != null) {
-                tempArrayList.remove(this);
-                player.propertiesByColour.replace(colour, tempArrayList);
-            }
-        }
+        ArrayList<PropertyCard> tempArrayList= player.propertiesByColour.get(colour);
+        tempArrayList.remove(this);
+        player.propertiesByColour.replace(colour,tempArrayList);
 
         Colour temp1 = colour;
         int temp2 = fullSets;
@@ -61,11 +57,10 @@ public class WildCard extends PropertyCard{
         otherRentList = temp3;
 
         super.use(player);
+
     }
 
+
+
+
 }
-
-
-
-
-

@@ -24,8 +24,6 @@ public class RentCard extends ActionCard implements AOE {
 
     }
 
-
-
     @Override
     public void use(ArrayList<Player> playerList,Player user) {
 
@@ -38,6 +36,13 @@ public class RentCard extends ActionCard implements AOE {
         //in case oversize
         number= Math.max(user.propertiesByColour.get(colour).get(0).fullSets, number);
         int rent = user.propertiesByColour.get(colour).get(0).rentList[number];
+
+        System.out.println("The rent you ask is "+rent);
+
+        //need an if else to use double rent
+        if (user.whetherDoubleRent()){
+            rent = rent*2;
+        }
 
         for (Player player : playerList){
             if (Objects.equals(user,player)){

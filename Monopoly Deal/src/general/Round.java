@@ -5,6 +5,9 @@ import card.CardKind;
 
 import card.actionCard.ActionCard;
 import card.actionCard.PassGo;
+import card.actionCard.aoe.BirthdayCard;
+import card.actionCard.aoe.RentCard;
+import card.actionCard.singleChoice.DebtCollector;
 import card.actionCard.steal.DealBreaker;
 import card.actionCard.steal.StealDeal;
 import card.moneyCard.MoneyCard;
@@ -17,6 +20,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import static general.Game.*;
+
 
 public class Round {
 
@@ -71,6 +75,9 @@ public class Round {
             shuffle();
 
         }
+
+
+
         return win;
     }
 
@@ -148,20 +155,24 @@ public class Round {
                             break;
 
                         case StealDeal:
+                            System.out.println("you choose to use a steal deal card");
                             StealDeal stealDeal = (StealDeal) card;
                             stealDeal.use(player,insertPlayer(),insetColour());
                             break;
 
                         case DealBreaker:
+                            System.out.println("you choose to use a deal breaker card");
                             DealBreaker dealBreaker = (DealBreaker) card;
                             dealBreaker.use(player,insertPlayer(),insetColour());
                             break;
 
                         case PassGo:
+                            System.out.println("you choose to use a PassGo card");
                             PassGo passGo = (PassGo) card;
                             passGo.use(player);
                             break;
                         case ForceDeal:
+
 
                             break;
 
@@ -170,21 +181,34 @@ public class Round {
 
 
                         case BuildHouse:
+                            System.out.println("Please insert a colour to build house");
                             break;
 
                         case BuildHotel:
+                            System.out.println("Please insert a colour to build hotel");
                             break;
 
                         case BirthdayCard:
+                            System.out.println("you choose to use a birthday card");
+                            BirthdayCard birthdayCard = (BirthdayCard) card;
+                            birthdayCard.use(playerList,player);
                             break;
 
                         case DebtCollector:
+                            System.out.println("you choose to use a debt collector card, please insert a player to ask 5M");
+                            Player target = insertPlayer();
+                            DebtCollector debtCollector = (DebtCollector) card;
+                            debtCollector.use(player,target);
                             break;
 
                         case RectCard:
+                            System.out.println("you choose to use a rent card, please insert a colour to rent");
+                            RentCard rentCard = (RentCard) card;
+                            rentCard.use(playerList,player);//the last one is the use who ask money
                             break;
 
                         case MulticoloredRentCard:
+                            System.out.println("you choose to use a multicolored rent card, please insert a colour and a player to rent");
                             break;
 
 
@@ -212,13 +236,8 @@ public class Round {
                         wildCard.flip(player);
                     }
 
-
-
-
                     return 0;
 
-
-                    //name of a wild card
                 case PASS:
                     //skip the round
                     System.out.println("you skip you round");
@@ -240,7 +259,7 @@ public class Round {
             }
 
         }
-
+        //for finish
         return null;
     }
 
