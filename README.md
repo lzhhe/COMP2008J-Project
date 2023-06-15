@@ -2,7 +2,7 @@
 | Real name(In Chinese pinyin)      | UCD Number     | Github Account    |
 | -------- | -------- | -------- |
 |  Liu Zihe | 21207341 | lzhhe |
-| Tian Jialin |21207354 |  MysticMosaic  |
+| Tian Jialin |21207354 |  MysticMosaic and 1348C52 |
 | Wang Shibo | 21207452 | wangshibo21207452 |
 |Zhang Weiyao | 21207352 |matthew21207352 |
 ## Some Attention of this project durning the test
