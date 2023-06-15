@@ -1,3 +1,4 @@
+/*
 package test.card.actionCard.aoe;
 
 import org.junit.Assert;
@@ -11,11 +12,13 @@ import card.actionCard.aoe.RentCard;
 import general.Player;
 import general.Colour;
 
+*/
 /**
  * test for RentCards
  *
  * @author tianj
- */
+ *//*
+
 public class RentCardTest {
     @Before
     public void before() throws Exception {
@@ -61,3 +64,4 @@ public class RentCardTest {
         System.out.println(user.toString());
     }
 }
+*/

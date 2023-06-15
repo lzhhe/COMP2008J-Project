@@ -28,6 +28,8 @@ import static general.Game.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
+
 
 
 public class Round {
@@ -90,7 +92,7 @@ public class Round {
     }
 
     public int oneStep() throws AWTException {
-        clearConsole();
+
         System.out.println("other player cards");
         //need print
         for (Player otherPlayer:playerList ){
@@ -299,6 +301,8 @@ public class Round {
         r.delay(100);
 
     }
+
+
 
 
 

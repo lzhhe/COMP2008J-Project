@@ -50,7 +50,7 @@ public class Game {
 
 		//ask user how many player
 
-		System.out.print("How many players? ");
+		System.out.print("How many players?");
 		int playerCount = scanner.nextInt();
 		scanner.nextLine();
 
@@ -94,7 +94,7 @@ public class Game {
 
 		//6 cards of 1M, 5 cards of 2M, 3 cards of 3M, 3 cards of 4M, 2 cards of 5M?? 1 card of 10M.
 
-		/*cardLibrary.add(new MoneyCard(1,"1M"));
+		cardLibrary.add(new MoneyCard(1,"1M"));
 		cardLibrary.add(new MoneyCard(1,"1M"));
 		cardLibrary.add(new MoneyCard(1,"1M"));
 		cardLibrary.add(new MoneyCard(1,"1M"));
@@ -110,7 +110,7 @@ public class Game {
 		cardLibrary.add(new MoneyCard(3,"3M"));
 		cardLibrary.add(new MoneyCard(4,"4M"));
 		cardLibrary.add(new MoneyCard(4,"4M"));
-		cardLibrary.add(new MoneyCard(4,"4M"));*/
+		cardLibrary.add(new MoneyCard(4,"4M"));
 		cardLibrary.add(new MoneyCard(5,"5M"));
 		cardLibrary.add(new MoneyCard(5,"5M"));
 		cardLibrary.add(new MoneyCard(10,"10M"));
@@ -131,7 +131,7 @@ public class Game {
 		cardLibrary.add(new PropertyCard(4,"Green2",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
 		cardLibrary.add(new PropertyCard(4,"Green3",CardKind.PropertyCard,new int[]{2,4,7},Colour.GREEN));
 
-		/*cardLibrary.add(new PropertyCard(3,"Yellow1",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
+		cardLibrary.add(new PropertyCard(3,"Yellow1",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
 		cardLibrary.add(new PropertyCard(3,"Yellow2",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
 		cardLibrary.add(new PropertyCard(3,"Yellow3",CardKind.PropertyCard,new int[]{2,4,6},Colour.YELLOW));
 
@@ -148,15 +148,15 @@ public class Game {
 		cardLibrary.add(new PropertyCard(2,"Pink3",CardKind.PropertyCard,new int[]{1,2,4},Colour.PINK));
 
 		cardLibrary.add(new PropertyCard(1,"lightBlue1",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
-		*//*cardLibrary.add(new PropertyCard(1,"Utility1",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
-		cardLibrary.add(new PropertyCard(1,"Utility2",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));*//*
+		cardLibrary.add(new PropertyCard(1,"Utility1",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
+		cardLibrary.add(new PropertyCard(1,"Utility2",CardKind.PropertyCard,new int[]{1,2},Colour.UTILITY));
 		cardLibrary.add(new PropertyCard(1,"lightBlue2",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
 		cardLibrary.add(new PropertyCard(1,"lightBlue3",CardKind.PropertyCard,new int[]{1,2,3},Colour.LIGHT_BLUE));
 
 		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
 		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
 		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
-		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));*/
+		cardLibrary.add(new PropertyCard(1,"RailRoad1",CardKind.PropertyCard,new int[]{1,2,3,4},Colour.RAILROAD));
 
 
 
@@ -189,22 +189,22 @@ public class Game {
 		//3 It's My Birthday, 10 Pass Go, 3 House, 3 Hotel, and 2 Double The Rent Cards
 		cardLibrary.add(new DealBreaker());
 		cardLibrary.add(new DealBreaker());
-		/*cardLibrary.add(new SayNo());
 		cardLibrary.add(new SayNo());
 		cardLibrary.add(new SayNo());
+		cardLibrary.add(new SayNo());
 		cardLibrary.add(new StealDeal());
 		cardLibrary.add(new StealDeal());
 		cardLibrary.add(new StealDeal());
 		cardLibrary.add(new ForcedDeal());
 		cardLibrary.add(new ForcedDeal());
 		cardLibrary.add(new ForcedDeal());
-		cardLibrary.add(new ForcedDeal());*/
+		cardLibrary.add(new ForcedDeal());
 
 
 
-		/*cardLibrary.add(new DebtCollector());
 		cardLibrary.add(new DebtCollector());
 		cardLibrary.add(new DebtCollector());
+		cardLibrary.add(new DebtCollector());
 		cardLibrary.add(new BirthdayCard());
 		cardLibrary.add(new BirthdayCard());
 		cardLibrary.add(new BirthdayCard());
@@ -217,7 +217,7 @@ public class Game {
 		cardLibrary.add(new PassGo());
 		cardLibrary.add(new PassGo());
 		cardLibrary.add(new PassGo());
-		cardLibrary.add(new PassGo());*/
+		cardLibrary.add(new PassGo());
 		cardLibrary.add(new BuildHouse());
 		cardLibrary.add(new BuildHouse());
 		cardLibrary.add(new BuildHouse());
@@ -234,7 +234,7 @@ public class Game {
 		cardLibrary.add(new RentCard("Blue Green Rent",Colour.BLUE,Colour.GREEN));
 		cardLibrary.add(new RentCard("Blue Green Rent",Colour.BLUE,Colour.GREEN));
 
-		/*cardLibrary.add(new RentCard("Red Yellow Rent",Colour.RED,Colour.YELLOW));
+		cardLibrary.add(new RentCard("Red Yellow Rent",Colour.RED,Colour.YELLOW));
 		cardLibrary.add(new RentCard("Red Yellow Rent",Colour.RED,Colour.YELLOW));
 
 		cardLibrary.add(new RentCard("Orange Pink Rent",Colour.ORANGE,Colour.PINK));
@@ -244,7 +244,7 @@ public class Game {
 		cardLibrary.add(new RentCard("LightBlue Brown Rent",Colour.LIGHT_BLUE,Colour.BROWN));
 
 		cardLibrary.add(new RentCard("Railroad Utility Rent",Colour.RAILROAD,Colour.UTILITY));
-		cardLibrary.add(new RentCard("Railroad Utility Rent",Colour.RAILROAD,Colour.UTILITY));*/
+		cardLibrary.add(new RentCard("Railroad Utility Rent",Colour.RAILROAD,Colour.UTILITY));
 
 		cardLibrary.add(new MulticoloredRentCard());
 		cardLibrary.add(new MulticoloredRentCard());

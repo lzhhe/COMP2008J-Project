@@ -17,6 +17,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.After;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import card.actionCard.aoe.RentCard;
+import card.actionCard.aoe.BirthdayCard;
+
 
 
 
@@ -47,28 +53,50 @@ public class BirthdayCardTest {
 
        @Test
         public void testUse() throws Exception {
-            // Set up user and target players
-            Player user = new Player("Tom", LocalDate.of(2001, 9, 10));
-            Player target1 = new Player("Jerry1", LocalDate.of(2002, 9, 10));
-            Player target2 = new Player("Jerry2", LocalDate.of(2002, 9, 10));
-            ArrayList<Player>  playerList = new ArrayList<>();
+           // Set up user and target players
+           Player user = new Player("Tom", LocalDate.of(2001, 9, 10));
+           Player target1 = new Player("Jerry1", LocalDate.of(2002, 9, 10));
+           Player target2 = new Player("Jerry2", LocalDate.of(2002, 9, 10));
+           ArrayList<Player> playerList = new ArrayList<>();
 
-            playerList.add(user);
-            playerList.add(target1);
-            playerList.add(target1);
+           playerList.add(user);
+           playerList.add(target1);
+           playerList.add(target1);
 
-            user.bank(new MoneyCard(10,"ten dollar"));
-            target1.bank(new MoneyCard(10,"ten dollar"));
-            target1.bank(new MoneyCard(10,"ten dollar"));
+           user.bank(new MoneyCard(10,"ten dollar"));
+           target1.bank(new MoneyCard(10,"ten dollar"));
+           target1.bank(new MoneyCard(10,"ten dollar"));
 
-            // Test use()
-            BirthdayCard birthdayCard = new BirthdayCard();
-            birthdayCard.use(playerList, user);
+           // Prepare user input
+           ByteArrayInputStream inputStream = new ByteArrayInputStream("USE".getBytes());
+           System.setIn(inputStream);
 
-           // Assert statements to verify the expected behavior
 
-           Assert.assertEquals(10, target1.getDeck());
-           Assert.assertEquals(10, target2.getDeck());
+
+           // Redirect console output
+           ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+           PrintStream originalOut = System.out;
+           System.setOut(new PrintStream(outputStream));
+
+           try {
+               // Test use()
+               BirthdayCard testBirthdayCard = new BirthdayCard();
+               testBirthdayCard.use(playerList, user);
+
+               // Get console output
+               String consoleOutput = outputStream.toString();
+
+               // Validate console output
+               Assert.assertTrue(consoleOutput.contains("Jerry1 still need to pay 2"));
+
+
+
+
+           } finally {
+               // Reset System.in and System.out
+               System.setIn(System.in);
+               System.setOut(originalOut);
+           }
        }
 }
 
