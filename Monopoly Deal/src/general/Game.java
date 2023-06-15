@@ -49,7 +49,7 @@ public class Game {
 		Scanner scanner = new Scanner(System.in);
 
 		//ask user how many player
-
+		System.out.print("Hi，welcome to Monopoly Deal!(For better experience, please set key 'Ctrl + C' to clear console.");
 		System.out.print("How many players?");
 		int playerCount = scanner.nextInt();
 		scanner.nextLine();
