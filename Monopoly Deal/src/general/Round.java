@@ -19,11 +19,15 @@ import card.propertyCard.PropertyCard;
 import card.propertyCard.wildCard.MulticoloredProperty;
 import card.propertyCard.wildCard.WildCard;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 import static general.Game.*;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 
 public class Round {
@@ -35,7 +39,7 @@ public class Round {
     public Round(Player player){
         this.player = player;
     }
-    public boolean inRound(){
+    public boolean inRound() throws AWTException {
         boolean win = false;
 
 
@@ -85,7 +89,8 @@ public class Round {
         return win;
     }
 
-    public int oneStep(){
+    public int oneStep() throws AWTException {
+        clearConsole();
         System.out.println("other player cards");
         //need print
         for (Player otherPlayer:playerList ){
@@ -103,6 +108,7 @@ public class Round {
         Scanner scanner = new Scanner(System.in);
         System.out.println("please insert what do you want to do: (BANK/USE/FLIP/PASS)");
         String userInput = scanner.nextLine();
+
         try {
             action = Action.valueOf(userInput);
 
@@ -282,5 +288,18 @@ public class Round {
 
 
     }
+
+
+    public static void clearConsole() throws AWTException {
+        Robot r = new Robot();
+        r.keyPress(KeyEvent.VK_CONTROL);             // press Ctrl
+        r.keyPress(KeyEvent.VK_R);                    // press R
+        r.keyRelease(KeyEvent.VK_R);                  // press R
+        r.keyRelease(KeyEvent.VK_CONTROL);            // press Ctrl
+        r.delay(100);
+
+    }
+
+
 
 }

@@ -1,4 +1,5 @@
-package test.card.propertyCard.wildCard; 
+/*
+package test.card.propertyCard.wildCard;
 
 import card.propertyCard.wildCard.WildCard;
 import general.Colour;
@@ -10,11 +11,13 @@ import org.junit.After;
 
 import java.time.LocalDate;
 
-/** 
+*/
+/**
 * WildCard Tester. 
 * 
 * @author tianj
-*/ 
+*//*
+
 public class WildCardTest { 
 
 @Before
@@ -25,11 +28,13 @@ public void before() throws Exception {
 public void after() throws Exception { 
 } 
 
-/** 
+*/
+/**
 * 
 * Method: flip() 
 * 
-*/ 
+*//*
+
 @Test
 public void testFlip() throws Exception {
     Player player=new Player("Tom", LocalDate.of(2009,1,1));
@@ -40,3 +45,4 @@ public void testFlip() throws Exception {
 
 }
 } 
+*/

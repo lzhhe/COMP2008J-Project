@@ -337,13 +337,11 @@ public class Player {
         printBank();
         printProperty();
     }
+    public ArrayList<Card> getDeck() {
+        return decks;
+    }
 
-
-
-
-
-
-
-
-
+    public ArrayList<Card> getBank() {
+        return bankCount;
+    }
 }
