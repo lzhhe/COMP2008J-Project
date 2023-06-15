@@ -6,6 +6,7 @@
 | Wang Shibo | 21207452 | wangshibo21207452 |
 |Zhang Weiyao | 21207352 |matthew21207352 |
 ## Some Attention of this project durning the test
+* You can add CTRL+R as the Shortcut keys to clean the screen
 * Please insert content following the instruction strictly, pther wise it may have some problems
 * All the action and colour the users insert must be a capital letter, it is related to the Enmu to check the action you insert
 * The original of muticolour porperty card is no colour, so in the first time of flip, its original colour must be inserted as NOCOLOUR
