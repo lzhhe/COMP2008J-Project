@@ -1,7 +1,7 @@
 # COMP2008J-Project
 ## Member: Git account name, real name (In Chinese PINYIN), UCD ID
 ## lzhhe Liu zihe 21207341
-## MysticMosaic Tian Jialin 21207354
+## MysticMosaic & 1348C52 Tian Jialin 21207354
 ## wangshibo21207452 Wang Shibo 21207452
 ## matthew21207352 Zhang Weiyao 21207352
 ## Some Attention of this project durning the test
